@@ -4,7 +4,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "com.kotlinfoundation.koko.auth.firebase"
+        namespace = "com.indieplaybook.app.auth.firebase"
     }
 
     sourceSets {

@@ -82,7 +82,7 @@ Never hardcode a concrete provider in `AppConfiguration.kt`.
 
 ## `AppConfiguration.kt` — per-app code-level config
 
-`shared/src/commonMain/kotlin/com/kotlinfoundation/koko/root/AppConfiguration.kt` — the toggles/values a
+`shared/src/commonMain/kotlin/com/indieplaybook/app/root/AppConfiguration.kt` — the toggles/values a
 developer sets per app:
 
 | Field | Purpose |
@@ -98,7 +98,7 @@ developer sets per app:
 
 ## `Constants.kt` — framework constants
 
-`shared/src/commonMain/kotlin/com/kotlinfoundation/koko/util/Constants.kt` (unlikely to change per app):
+`shared/src/commonMain/kotlin/com/indieplaybook/app/util/Constants.kt` (unlikely to change per app):
 `PAYWALL_PREMIUM_ACCESS` (entitlement id), `PAYWALL_PLACEMENT_*` (placement ids), `CREDIT_PACK_PRODUCT_ID_PREFIX`,
 DB/prefs file names.
 

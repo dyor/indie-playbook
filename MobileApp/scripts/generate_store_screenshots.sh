@@ -6,9 +6,9 @@
 # external tooling (Fastlane, ImageMagick) required.
 #
 # To add a new screenshot, drop a `@Preview @StoreScreenshot` composable anywhere
-# under `com.kotlinfoundation.koko` and re-run this script. See:
-#   shared/src/commonMain/kotlin/com/kotlinfoundation/koko/screenshot/StoreScreenshot.kt
-#   shared/src/commonMain/kotlin/com/kotlinfoundation/koko/screenshot/DeviceFrame.kt
+# under `com.indieplaybook.app` and re-run this script. See:
+#   shared/src/commonMain/kotlin/com/indieplaybook/app/screenshot/StoreScreenshot.kt
+#   shared/src/commonMain/kotlin/com/indieplaybook/app/screenshot/DeviceFrame.kt
 #
 # Usage (run from MobileApp/):
 #   ./scripts/generate_store_screenshots.sh

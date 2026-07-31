@@ -14,11 +14,11 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "com.kotlinfoundation.koko.MainKt"
+        mainClass = "com.indieplaybook.app.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.kotlinfoundation.koko"
+            packageName = "com.indieplaybook.app"
             packageVersion = "1.0.0"
         }
     }

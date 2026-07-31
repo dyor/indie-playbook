@@ -4,7 +4,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "com.kotlinfoundation.koko.auth.api"
+        namespace = "com.indieplaybook.app.auth.api"
     }
 
     sourceSets {

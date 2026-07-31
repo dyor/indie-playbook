@@ -10,14 +10,14 @@ plugins {
 }
 
 android {
-    namespace = "com.kotlinfoundation.koko"
+    namespace = "com.indieplaybook.app"
     compileSdk =
         libs.versions.android.compileSdk
             .get()
             .toInt()
 
     defaultConfig {
-        applicationId = "com.kotlinfoundation.koko"
+        applicationId = "com.indieplaybook.app"
         minSdk =
             libs.versions.android.minSdk
                 .get()

@@ -5,7 +5,7 @@ a first taste of value** before any ask — then hand off to the paywall at the 
 (see `paywall.md`). Fill the `TAILOR PER APP` blanks for your product; the rest are strong defaults.
 
 > Code lives in
-> `MobileApp/shared/src/commonMain/kotlin/com/kotlinfoundation/koko/presentation/screens/onboarding/`
+> `MobileApp/shared/src/commonMain/kotlin/com/indieplaybook/app/presentation/screens/onboarding/`
 > (`OnBoardingScreen.kt` + `OnBoardingScreenVariation1/2.kt`, `OnBoardingUiState.kt`).
 
 ## Pattern choice
@@ -18,22 +18,19 @@ Pick the shape that fits *this* app — not "more screens" by default:
   personalized plan → first taste of value → recap → paywall. Best when personalization meaningfully
   changes the experience and traffic is colder/paid.
 
-**`TAILOR PER APP` — chosen pattern + why:** _e.g. "questionnaire-led, because the plan is
-personalized to the user's goal and most installs come from paid social."_
+**`TAILOR PER APP` — chosen pattern + why:** Short emotional (3 screens). The value prop (reading stories) is self-evident, there is no personalized plan, and traffic is warm (devs looking for inspiration).
 
 ## The levers (apply in priority order)
 
 1. **Capture the goal, surface it on the paywall.** Ask the user's primary goal early and echo it at
    the ask. Usually the single biggest lever.
-   - **`TAILOR PER APP` — goal-capture question(s):** _e.g. "What's your main goal? Lose weight /
-     Build muscle / Eat healthier."_
+   - **`TAILOR PER APP` — goal-capture question(s):** "What are you looking for?" (Options: Tech stack inspiration, Marketing/Growth playbooks, Just browsing).
 2. **Value before the ask.** Let the user *use the core mechanic once* (a real sample/output), not a
    passive tour, before signup or paywall.
-   - **`TAILOR PER APP` — the first-taste moment:** _e.g. "Generate one free result from their input."_
+   - **`TAILOR PER APP` — the first-taste moment:** Landing directly on the curated feed of top apps.
 3. **Permission priming.** Precede every system permission with a benefit-framed screen; never open
    with a permission wall.
-   - **`TAILOR PER APP` — permissions & their benefit framing:** _e.g. "Notifications → streak
-     reminders."_
+   - **`TAILOR PER APP` — permissions & their benefit framing:** None required for MVP.
 4. **Micro-progress & low friction.** Step indicator, light positive feedback; no forced account
    creation before value; offer a skip/guest path; only collect fields that change the experience.
 
@@ -42,7 +39,7 @@ personalized to the user's goal and most installs come from paid social."_
 - Keep the promise consistent from ad → onboarding → paywall.
 - Headlines short and benefit-led; conversational, not corporate (see
   `AiGuidelines/agents/onboarding_designer.md` for the screen-by-screen copy brief).
-- **`TAILOR PER APP` — top 3 pain points this app resolves:** _…_
+- **`TAILOR PER APP` — top 3 pain points this app resolves:** 1. Finding indie apps built with React Native/Flutter/KMP. 2. Learning how indie devs get visibility and downloads. 3. Discovering who is behind fast-growth indie apps.
 
 ## Measure
 

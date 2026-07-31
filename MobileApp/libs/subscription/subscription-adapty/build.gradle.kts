@@ -6,7 +6,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "com.kotlinfoundation.koko.subscription.adapty"
+        namespace = "com.indieplaybook.app.subscription.adapty"
     }
 
     sourceSets {

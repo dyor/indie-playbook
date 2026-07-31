@@ -1,94 +1,144 @@
+// updateContent.js - Dynamic hydration for marketing site & legal documents
+
 function loadConfigAndUpdateContent() {
-    document.querySelectorAll(".app-name").forEach(function(element) {
-        element.textContent = CONFIG.APP_NAME;
-    });
-    document.querySelectorAll(".developer-or-company-name").forEach(function(element) {
-        element.textContent = CONFIG.DEVELOPER_OR_COMPANY_NAME;
-    });
-    document.querySelectorAll(".contact-email").forEach(function(element) {
-        element.href = "mailto:" + CONFIG.CONTACT_EMAIL;
-        element.textContent = CONFIG.CONTACT_EMAIL;
-    });
-    document.querySelectorAll(".privacy-policy-last-update-date").forEach(function(element) {
-        element.textContent = CONFIG.PRIVACY_POLICY_LAST_UPDATE_DATE;
-    });
-    document.querySelectorAll(".terms-and-services-last-update-date").forEach(function(element) {
-        element.textContent = CONFIG.TERMS_AND_SERVICE_LAST_UPDATE_DATE;
-    });
-    document.querySelectorAll(".current-year").forEach(function(element) {
-        element.textContent = new Date().getFullYear();
-    });
-
-    // Set website title and description
-    if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
-        document.title = CONFIG.WEBSITE_TITLE;
-        document.querySelector('meta[name="description"]').setAttribute('content', CONFIG.WEBSITE_DESCRIPTION); 
- 
-
+    if (typeof CONFIG === 'undefined') {
+        console.warn("CONFIG object not found in config.js");
+        return;
     }
-    // Set app store and play store links
-    document.querySelectorAll(".app-store-link").forEach(function(element) {
-        if (CONFIG.APPSTORE_URL && CONFIG.APPSTORE_URL.trim() !== "") { 
-            element.href = CONFIG.APPSTORE_URL;
-            element.style.display = 'inline-block'; 
 
+    // Replace text placeholders
+    document.querySelectorAll(".app-name").forEach(function(el) {
+        el.textContent = CONFIG.APP_NAME;
+    });
+
+    document.querySelectorAll(".developer-or-company-name").forEach(function(el) {
+        el.textContent = CONFIG.DEVELOPER_OR_COMPANY_NAME;
+    });
+
+    document.querySelectorAll(".contact-email").forEach(function(el) {
+        el.href = "mailto:" + CONFIG.CONTACT_EMAIL;
+        el.textContent = CONFIG.CONTACT_EMAIL;
+    });
+
+    document.querySelectorAll(".privacy-policy-last-update-date").forEach(function(el) {
+        el.textContent = CONFIG.PRIVACY_POLICY_LAST_UPDATE_DATE;
+    });
+
+    document.querySelectorAll(".terms-and-services-last-update-date").forEach(function(el) {
+        el.textContent = CONFIG.TERMS_AND_SERVICE_LAST_UPDATE_DATE;
+    });
+
+    document.querySelectorAll(".current-year").forEach(function(el) {
+        el.textContent = new Date().getFullYear();
+    });
+
+    // Set SEO metadata if on main index page
+    if (window.location.pathname.endsWith("/") || window.location.pathname.endsWith("/index.html") || window.location.pathname === "") {
+        if (CONFIG.WEBSITE_TITLE) {
+            document.title = CONFIG.WEBSITE_TITLE;
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && CONFIG.WEBSITE_DESCRIPTION) {
+            metaDesc.setAttribute('content', CONFIG.WEBSITE_DESCRIPTION);
+        }
+    }
+
+    // Configure Store Links
+    document.querySelectorAll(".app-store-link").forEach(function(el) {
+        if (CONFIG.APPSTORE_URL && CONFIG.APPSTORE_URL.trim() !== "") {
+            el.href = CONFIG.APPSTORE_URL;
+            el.style.display = 'inline-block';
+        } else {
+            el.style.display = 'none';
         }
     });
 
-    document.querySelectorAll(".play-store-link").forEach(function(element) {
-        if (CONFIG.PLAYSTORE_URL && CONFIG.PLAYSTORE_URL.trim() !== "") { 
-            element.href = CONFIG.PLAYSTORE_URL;
-            element.style.display = 'inline-block'; 
-
+    document.querySelectorAll(".play-store-link").forEach(function(el) {
+        if (CONFIG.PLAYSTORE_URL && CONFIG.PLAYSTORE_URL.trim() !== "") {
+            el.href = CONFIG.PLAYSTORE_URL;
+            el.style.display = 'inline-block';
+        } else {
+            el.style.display = 'none';
         }
     });
 
-    // Hero Section
-    document.querySelectorAll(".hero-title").forEach(function(element) {
-        element.textContent = TEXT_CONTENT.HERO_TITLE;
-    });
-    document.querySelectorAll(".hero-subtitle").forEach(function(element) {
-        element.textContent = TEXT_CONTENT.HERO_SUBTITLE;
-    });
+    // If TEXT_CONTENT is available, hydrate landing page sections
+    if (typeof TEXT_CONTENT !== 'undefined') {
+        // Hero Section
+        const heroBadge = document.querySelector(".hero-badge-text");
+        if (heroBadge && TEXT_CONTENT.HERO_BADGE) heroBadge.textContent = TEXT_CONTENT.HERO_BADGE;
 
-    //Problem Section
-    document.querySelector('.problems-section h2').textContent = TEXT_CONTENT.PROBLEM_SECTION_TITLE;
-    document.querySelector('.problems-section p').textContent = TEXT_CONTENT.PROBLEM_SECTION_TEXT;
+        const heroTitle = document.querySelector(".hero-title");
+        if (heroTitle && TEXT_CONTENT.HERO_TITLE) heroTitle.textContent = TEXT_CONTENT.HERO_TITLE;
 
-    document.querySelector('.problems-section .card:nth-child(1) h3').textContent = TEXT_CONTENT.PROBLEM_CARD_TITLE1;
-    document.querySelector('.problems-section .card:nth-child(1) p').textContent = TEXT_CONTENT.PROBLEM_CARD_TEXT1;
+        const heroSubtitle = document.querySelector(".hero-subtitle");
+        if (heroSubtitle && TEXT_CONTENT.HERO_SUBTITLE) heroSubtitle.textContent = TEXT_CONTENT.HERO_SUBTITLE;
 
-    document.querySelector('.problems-section .card:nth-child(2) h3').textContent = TEXT_CONTENT.PROBLEM_CARD_TITLE2;
-    document.querySelector('.problems-section .card:nth-child(2) p').textContent = TEXT_CONTENT.PROBLEM_CARD_TEXT2;
+        // Features Section
+        const featTag = document.querySelector("#features .section-tag");
+        if (featTag && TEXT_CONTENT.FEATURES_SECTION_TAG) featTag.textContent = TEXT_CONTENT.FEATURES_SECTION_TAG;
 
-    document.querySelector('.problems-section .card:nth-child(3) h3').textContent = TEXT_CONTENT.PROBLEM_CARD_TITLE3;
-    document.querySelector('.problems-section .card:nth-child(3) p').textContent = TEXT_CONTENT.PROBLEM_CARD_TEXT3;
+        const featTitle = document.querySelector("#features .section-title");
+        if (featTitle && TEXT_CONTENT.FEATURES_SECTION_TITLE) featTitle.textContent = TEXT_CONTENT.FEATURES_SECTION_TITLE;
 
+        const featSubtitle = document.querySelector("#features .section-subtitle");
+        if (featSubtitle && TEXT_CONTENT.FEATURES_SECTION_SUBTITLE) featSubtitle.textContent = TEXT_CONTENT.FEATURES_SECTION_SUBTITLE;
 
+        const featuresGrid = document.querySelector(".features-grid");
+        if (featuresGrid && Array.isArray(TEXT_CONTENT.FEATURE_CARDS) && TEXT_CONTENT.FEATURE_CARDS.length > 0) {
+            featuresGrid.innerHTML = TEXT_CONTENT.FEATURE_CARDS.map(function(card) {
+                return `
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">${card.icon || '✨'}</div>
+                        <h3 class="feature-title">${card.title}</h3>
+                        <p class="feature-text">${card.text}</p>
+                    </div>
+                `;
+            }).join("");
+        }
 
-    // Feature Section
-    document.querySelector('.features-section h2').textContent = TEXT_CONTENT.FEATURE_SECTION_TITLE;
-    document.querySelector('.features-section p').textContent = TEXT_CONTENT.FEATURE_SECTION_TEXT;
+        // How it Works / Workflow
+        const workflowGrid = document.querySelector(".workflow-grid");
+        if (workflowGrid && Array.isArray(TEXT_CONTENT.WORKFLOW_STEPS) && TEXT_CONTENT.WORKFLOW_STEPS.length > 0) {
+            workflowGrid.innerHTML = TEXT_CONTENT.WORKFLOW_STEPS.map(function(step) {
+                return `
+                    <div class="workflow-card">
+                        <span class="step-number">${step.step}</span>
+                        <h3 class="workflow-title">${step.title}</h3>
+                        <p class="workflow-text">${step.text}</p>
+                    </div>
+                `;
+            }).join("");
+        }
 
-    document.querySelector('.features-section .card:nth-child(1) h3').textContent = TEXT_CONTENT.FEATURE_CARD_TITLE1;
-    document.querySelector('.features-section .card:nth-child(1) p').textContent = TEXT_CONTENT.FEATURE_CARD_TEXT1;
+        // FAQs
+        const faqContainer = document.querySelector(".faq-container");
+        if (faqContainer && Array.isArray(TEXT_CONTENT.FAQS) && TEXT_CONTENT.FAQS.length > 0) {
+            faqContainer.innerHTML = TEXT_CONTENT.FAQS.map(function(item) {
+                return `
+                    <div class="faq-item">
+                        <h3 class="faq-question">${item.q}</h3>
+                        <p class="faq-answer">${item.a}</p>
+                    </div>
+                `;
+            }).join("");
+        }
 
-    document.querySelector('.features-section .card:nth-child(2) h3').textContent = TEXT_CONTENT.FEATURE_CARD_TITLE2;
-    document.querySelector('.features-section .card:nth-child(2) p').textContent = TEXT_CONTENT.FEATURE_CARD_TEXT2;
+        // CTA Section
+        const ctaTag = document.querySelector(".cta-box .section-tag");
+        if (ctaTag && TEXT_CONTENT.CTA_SECTION_TAG) ctaTag.textContent = TEXT_CONTENT.CTA_SECTION_TAG;
 
-    document.querySelector('.features-section .card:nth-child(3) h3').textContent = TEXT_CONTENT.FEATURE_CARD_TITLE3;
-    document.querySelector('.features-section .card:nth-child(3) p').textContent = TEXT_CONTENT.FEATURE_CARD_TEXT3;
+        const ctaTitle = document.querySelector(".cta-box .section-title");
+        if (ctaTitle && TEXT_CONTENT.CTA_SECTION_TITLE) ctaTitle.textContent = TEXT_CONTENT.CTA_SECTION_TITLE;
 
-    // Call to Action Section
-    document.querySelector('.cta h2').textContent = TEXT_CONTENT.CTA_SECTION_TITLE;
-    document.querySelector('.cta p').textContent = TEXT_CONTENT.CTA_SECTION_TEXT;
-
-
+        const ctaText = document.querySelector(".cta-box .section-subtitle");
+        if (ctaText && TEXT_CONTENT.CTA_SECTION_TEXT) ctaText.textContent = TEXT_CONTENT.CTA_SECTION_TEXT;
+    }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const script = document.createElement('script');
-    script.src = 'config.js';
-    script.onload = loadConfigAndUpdateContent;
-    document.head.appendChild(script);
-});
+// Auto-run when DOM is ready
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadConfigAndUpdateContent);
+} else {
+    loadConfigAndUpdateContent();
+}
