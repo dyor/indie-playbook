@@ -17,7 +17,7 @@ import com.indieplaybook.app.data.source.local.entity.GenerationOutputEntity
 // change the schema after shipping; otherwise DatabaseModule drops all tables on schema change.
 @Database(
     entities = [AppStoryEntity::class, GenerationOutputEntity::class, CreditTransactionEntity::class, ExampleEntity::class],
-    version = 3,
+    version = 6,
 )
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class AppDatabase : RoomDatabase() {

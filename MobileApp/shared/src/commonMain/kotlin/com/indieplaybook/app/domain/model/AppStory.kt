@@ -12,5 +12,6 @@ data class AppStory(
     val downloads: String? = null,
     val revenue: String? = null,
     val publisher: String? = null,
-    val releaseDate: String? = null
+    val releaseDate: String? = null,
+    val category: String? = null
 )

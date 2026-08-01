@@ -88,6 +88,7 @@ kotlin {
             implementation(libs.kmpauth.google)
             implementation(libs.napier)
             implementation(libs.room.runtime)
+            implementation(libs.gitlive.firebase.firestore)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.core)
             implementation(libs.ktor.client.content.negotiation)
@@ -150,6 +151,7 @@ kotlin {
             implementation(libs.firebase.analytics)
             implementation(libs.firebase.crashlytics)
             implementation(libs.firebase.config)
+            implementation(libs.gitlive.firebase.firestore)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.koin.android)
@@ -159,6 +161,7 @@ kotlin {
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.gitlive.firebase.firestore)
         }
 
         jvmMain.dependencies {
@@ -168,6 +171,7 @@ kotlin {
         val nonWebMain by getting {
             dependencies {
                 implementation(libs.sqlite.bundled)
+                implementation(libs.gitlive.firebase.firestore)
             }
         }
 

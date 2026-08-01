@@ -102,11 +102,30 @@ fun AppStoryDetailScreen(
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(AppTheme.colors.outline)
                         ) {
+                            val iconText = when (story.category) {
+                                "Photo & Video" -> "📸"
+                                "Lifestyle" -> "🛋️"
+                                "Health & Fitness" -> "💪"
+                                "Sports" -> "⚽️"
+                                "Education" -> "📚"
+                                "Finance" -> "💰"
+                                "Productivity" -> "🚀"
+                                "Shopping" -> "🛍️"
+                                "Entertainment" -> "🍿"
+                                "Music" -> "🎵"
+                                "Travel" -> "✈️"
+                                "Navigation" -> "🗺️"
+                                "Reference" -> "📖"
+                                "Social Networking" -> "💬"
+                                "Business" -> "🏢"
+                                "Utilities" -> "🛠️"
+                                "Food & Drink" -> "🍔"
+                                else -> "✨"
+                            }
                             Text(
-                                text = story.name.take(1),
+                                text = iconText,
                                 modifier = Modifier.align(Alignment.Center),
-                                color = Color.White,
-                                style = AppTheme.typography.h4
+                                style = AppTheme.typography.h3
                             )
                         }
                         Spacer(modifier = Modifier.width(16.dp))
@@ -118,7 +137,17 @@ fun AppStoryDetailScreen(
                                 color = AppTheme.colors.text.primary
                             )
                             Spacer(modifier = Modifier.height(4.dp))
-                            TechStackBadge(techStack = story.techStack)
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                TechStackBadge(techStack = story.techStack)
+                                if (!story.category.isNullOrBlank()) {
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(
+                                        text = story.category,
+                                        style = AppTheme.typography.bodyExtraSmall,
+                                        color = AppTheme.colors.text.secondary
+                                    )
+                                }
+                            }
                             Spacer(modifier = Modifier.height(8.dp))
                             if (!story.downloads.isNullOrBlank()) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {

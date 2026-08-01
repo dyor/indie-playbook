@@ -118,8 +118,22 @@ fun FilterChip(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
-    val backgroundColor = if (isSelected) AppTheme.colors.primary else AppTheme.colors.surfaceContainer
-    val textColor = if (isSelected) AppTheme.colors.onPrimary else AppTheme.colors.text.primary
+    val platformColor = when (text) {
+        "Flutter" -> Color(0xFF02569B)
+        "React Native" -> Color(0xFF20232A)
+        "Kotlin Multiplatform", "KMP" -> Color(0xFF7F52FF)
+        else -> AppTheme.colors.primary
+    }
+
+    val backgroundColor = if (isSelected) platformColor else AppTheme.colors.surfaceContainer
+    val textColor = if (isSelected) Color.White else AppTheme.colors.text.primary
+
+    val emoji = when (text) {
+        "Flutter" -> "🦋 "
+        "React Native" -> "⚛️ "
+        "Kotlin Multiplatform", "KMP" -> "🚀 "
+        else -> ""
+    }
 
     Surface(
         shape = CircleShape,
@@ -127,7 +141,7 @@ fun FilterChip(
         modifier = Modifier.clickable(onClick = onClick)
     ) {
         Text(
-            text = text,
+            text = "$emoji$text",
             color = textColor,
             style = AppTheme.typography.bodyMedium,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
@@ -167,8 +181,27 @@ fun AppStoryCard(
                             .clip(RoundedCornerShape(12.dp))
                             .background(AppTheme.colors.outline)
                     ) {
-                         // Placeholder for icon
-                         Text("A", modifier = Modifier.align(Alignment.Center), color = Color.White)
+                        val iconText = when (story.category) {
+                            "Photo & Video" -> "📸"
+                            "Lifestyle" -> "🛋️"
+                            "Health & Fitness" -> "💪"
+                            "Sports" -> "⚽️"
+                            "Education" -> "📚"
+                            "Finance" -> "💰"
+                            "Productivity" -> "🚀"
+                            "Shopping" -> "🛍️"
+                            "Entertainment" -> "🍿"
+                            "Music" -> "🎵"
+                            "Travel" -> "✈️"
+                            "Navigation" -> "🗺️"
+                            "Reference" -> "📖"
+                            "Social Networking" -> "💬"
+                            "Business" -> "🏢"
+                            "Utilities" -> "🛠️"
+                            "Food & Drink" -> "🍔"
+                            else -> "✨"
+                        }
+                        Text(iconText, modifier = Modifier.align(Alignment.Center), style = AppTheme.typography.h4)
                     }
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
@@ -179,7 +212,17 @@ fun AppStoryCard(
                             color = AppTheme.colors.text.primary
                         )
                         Spacer(modifier = Modifier.height(4.dp))
-                        TechStackBadge(techStack = story.techStack)
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            TechStackBadge(techStack = story.techStack)
+                            if (!story.category.isNullOrBlank()) {
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = story.category,
+                                    style = AppTheme.typography.bodyExtraSmall,
+                                    color = AppTheme.colors.text.secondary
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -264,16 +307,30 @@ fun AppStoryCard(
 
 @Composable
 fun TechStackBadge(techStack: String) {
+    val backgroundColor = when (techStack) {
+        "Flutter" -> Color(0xFF02569B)
+        "React Native" -> Color(0xFF20232A)
+        "Kotlin Multiplatform", "KMP" -> Color(0xFF7F52FF)
+        else -> AppTheme.colors.alternative
+    }
+
+    val emoji = when (techStack) {
+        "Flutter" -> "🦋 "
+        "React Native" -> "⚛️ "
+        "Kotlin Multiplatform", "KMP" -> "🚀 "
+        else -> ""
+    }
+
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(4.dp))
-            .background(AppTheme.colors.alternative)
+            .background(backgroundColor)
             .padding(horizontal = 6.dp, vertical = 2.dp)
     ) {
         Text(
-            text = techStack,
+            text = "$emoji$techStack",
             style = AppTheme.typography.bodyExtraSmall,
-            color = AppTheme.colors.onAlternative,
+            color = Color.White,
             fontWeight = FontWeight.Medium
         )
     }

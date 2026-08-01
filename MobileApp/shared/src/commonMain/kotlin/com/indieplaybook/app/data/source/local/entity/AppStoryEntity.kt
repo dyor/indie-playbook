@@ -22,7 +22,8 @@ data class AppStoryEntity(
     @ColumnInfo("downloads") val downloads: String? = null,
     @ColumnInfo("revenue") val revenue: String? = null,
     @ColumnInfo("publisher") val publisher: String? = null,
-    @ColumnInfo("release_date") val releaseDate: String? = null
+    @ColumnInfo("release_date") val releaseDate: String? = null,
+    @ColumnInfo("category") val category: String? = null
 )
 
 fun AppStoryEntity.toModel(): AppStory = AppStory(
@@ -37,7 +38,8 @@ fun AppStoryEntity.toModel(): AppStory = AppStory(
     downloads = downloads,
     revenue = revenue,
     publisher = publisher,
-    releaseDate = releaseDate
+    releaseDate = releaseDate,
+    category = category
 )
 
 fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
@@ -52,5 +54,6 @@ fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
     downloads = downloads,
     revenue = revenue,
     publisher = publisher,
-    releaseDate = releaseDate
+    releaseDate = releaseDate,
+    category = category
 )

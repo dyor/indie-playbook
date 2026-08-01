@@ -5,6 +5,7 @@
     <string name="title_error_dialog">Error</string>
     <string name="btn_ok">OK</string>
     <string name="btn_logout">Log Out</string>
+    <string name="btn_refresh_data">Refresh Data</string>
     <string name="btn_delete_account">Delete Account</string>
     <string name="title_delete_user_dialog">Delete Account?</string>
     <string name="subtitle_delete_user_dialog">Are you sure you want to delete your account?</string>

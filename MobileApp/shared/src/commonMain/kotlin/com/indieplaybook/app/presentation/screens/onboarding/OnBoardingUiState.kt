@@ -4,7 +4,11 @@ import com.indieplaybook.app.designsystem.generated.resources.UiRes
 import com.indieplaybook.app.designsystem.generated.resources.ic_logo
 import com.indieplaybook.app.generated.resources.Res
 import com.indieplaybook.app.generated.resources.desc_onboarding_page_1
+import com.indieplaybook.app.generated.resources.desc_onboarding_page_2
+import com.indieplaybook.app.generated.resources.desc_onboarding_page_3
 import com.indieplaybook.app.generated.resources.title_onboarding_page_1
+import com.indieplaybook.app.generated.resources.title_onboarding_page_2
+import com.indieplaybook.app.generated.resources.title_onboarding_page_3
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 
@@ -23,13 +27,13 @@ data class OnBoardingUiState(
             UiRes.drawable.ic_logo,
         ),
         OnBoardingScreenData(
-            Res.string.title_onboarding_page_1,
-            Res.string.desc_onboarding_page_1,
+            Res.string.title_onboarding_page_2,
+            Res.string.desc_onboarding_page_2,
             UiRes.drawable.ic_logo,
         ),
         OnBoardingScreenData(
-            Res.string.title_onboarding_page_1,
-            Res.string.desc_onboarding_page_1,
+            Res.string.title_onboarding_page_3,
+            Res.string.desc_onboarding_page_3,
             UiRes.drawable.ic_logo,
         ),
     ),

@@ -3,8 +3,14 @@
     <string name="bottom_nav_label_profile">Profile</string>
     <string name="bottom_nav_label_gallery">Favorites</string>
 
-    <string name="title_onboarding_page_1">Amazing Title</string>
-    <string name="desc_onboarding_page_1">Amazing Description Text will be here</string>
+    <string name="title_onboarding_page_1">Discover Indie Success</string>
+    <string name="desc_onboarding_page_1">Learn the exact tech stacks, origin stories, and growth playbooks of the top independent cross-platform apps.</string>
+
+    <string name="title_onboarding_page_2">Filter by Tech Stack</string>
+    <string name="desc_onboarding_page_2">Whether you build with Flutter, React Native, or Kotlin Multiplatform, find apps that share your stack.</string>
+
+    <string name="title_onboarding_page_3">Nominate Your App</string>
+    <string name="desc_onboarding_page_3">Built an indie app that hit 10K+ downloads? Join our community and nominate your app to be featured.</string>
 
     <string name="btn_get_started">Get Started</string>
     <string name="btn_restore_purchase">Restore Purchase</string>

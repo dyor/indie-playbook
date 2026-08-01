@@ -393,6 +393,12 @@ Two layers:
 - **P5** `setup-analytics`, `enable-notifications`, `design-onboarding`, `add-virality-loop`
 - **Cross-phase** `verify-ui` (behaviour via headless Compose tests + appearance via a rendered PNG), `run-quality-gates`
 
+### Tool Usage Guardrails
+When operating within the IDE:
+- **Do not use `cat` in a terminal.** Always use the built-in `read_file` tool to read file contents. `read_file` operates directly on IDE memory buffers, ensuring you see unsaved user changes.
+- **Do not use `grep` in a terminal.** Always use the built-in `grep`, `code_search`, `find_usages`, or `find_declaration` tools. They are backed by the IDE's semantic index and are significantly faster and more accurate.
+- **Do not use `sed`, `awk`, or shell redirection (`>`, `>>`) to edit files.** Always use the built-in `write_file`, `replace_file_content`, or `multi_replace_file_content` tools. Using shell commands to edit files bypasses IDE safety checks and will permanently destroy unsaved user work.
+
 ### Screen Generation
 **Whenever the user asks for a new screen, run this from `MobileApp/`** instead of hand-creating files:
 
