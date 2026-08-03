@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class SavedBookmarksViewModel(
-    private val appStoryRepository: AppStoryRepository
+    private val appStoryRepository: AppStoryRepository,
 ) : ViewModel() {
 
     val uiState: StateFlow<SavedBookmarksUiState> = appStoryRepository.getAllStories()
         .map { stories ->
             SavedBookmarksUiState(
-                bookmarkedStories = stories.filter { it.isBookmarked }
+                bookmarkedStories = stories.filter { it.isBookmarked },
             )
         }
         .stateIn(viewModelScope, SharingStarted.Eagerly, SavedBookmarksUiState())
@@ -26,6 +26,7 @@ class SavedBookmarksViewModel(
             is SavedBookmarksUiEvent.OnStoryClicked -> {
                 // Navigated from UI directly
             }
+
             is SavedBookmarksUiEvent.OnBookmarkClicked -> {
                 viewModelScope.launch {
                     appStoryRepository.toggleBookmark(event.story.id)

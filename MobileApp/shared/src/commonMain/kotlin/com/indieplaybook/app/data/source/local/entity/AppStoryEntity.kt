@@ -23,7 +23,24 @@ data class AppStoryEntity(
     @ColumnInfo("revenue") val revenue: String? = null,
     @ColumnInfo("publisher") val publisher: String? = null,
     @ColumnInfo("release_date") val releaseDate: String? = null,
-    @ColumnInfo("category") val category: String? = null
+    @ColumnInfo("category") val category: String? = null,
+
+    // New fields from firestore
+    @ColumnInfo("google_play_url") val googlePlayUrl: String? = null,
+    @ColumnInfo("app_store_url") val appStoreUrl: String? = null,
+    @ColumnInfo("google_play_reviews") val googlePlayReviews: String? = null,
+    @ColumnInfo("google_play_rating") val googlePlayRating: Double? = null,
+    @ColumnInfo("google_play_about") val googlePlayAbout: String? = null,
+    @ColumnInfo("app_store_rating") val appStoreRating: Double? = null,
+    @ColumnInfo("app_store_reviews") val appStoreReviews: Int? = null,
+    @ColumnInfo("app_store_size") val appStoreSize: String? = null,
+    @ColumnInfo("app_store_chart_rank") val appStoreChartRank: Int? = null,
+    @ColumnInfo("app_store_chart_category") val appStoreChartCategory: String? = null,
+    @ColumnInfo("app_store_about") val appStoreAbout: String? = null,
+    @ColumnInfo("app_store_age_rating") val appStoreAgeRating: String? = null,
+    @ColumnInfo("app_store_privacy_policy") val appStorePrivacyPolicy: String? = null,
+    @ColumnInfo("google_play_privacy_policy") val googlePlayPrivacyPolicy: String? = null,
+    @ColumnInfo("app_website_url") val appWebsiteUrl: String? = null
 )
 
 fun AppStoryEntity.toModel(): AppStory = AppStory(
@@ -39,7 +56,22 @@ fun AppStoryEntity.toModel(): AppStory = AppStory(
     revenue = revenue,
     publisher = publisher,
     releaseDate = releaseDate,
-    category = category
+    category = category,
+    googlePlayUrl = googlePlayUrl,
+    appStoreUrl = appStoreUrl,
+    googlePlayReviews = googlePlayReviews,
+    googlePlayRating = googlePlayRating,
+    googlePlayAbout = googlePlayAbout,
+    appStoreRating = appStoreRating,
+    appStoreReviews = appStoreReviews,
+    appStoreSize = appStoreSize,
+    appStoreChartRank = appStoreChartRank,
+    appStoreChartCategory = appStoreChartCategory,
+    appStoreAbout = appStoreAbout,
+    appStoreAgeRating = appStoreAgeRating,
+    appStorePrivacyPolicy = appStorePrivacyPolicy,
+    googlePlayPrivacyPolicy = googlePlayPrivacyPolicy,
+    appWebsiteUrl = appWebsiteUrl
 )
 
 fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
@@ -55,5 +87,20 @@ fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
     revenue = revenue,
     publisher = publisher,
     releaseDate = releaseDate,
-    category = category
+    category = category,
+    googlePlayUrl = googlePlayUrl,
+    appStoreUrl = appStoreUrl,
+    googlePlayReviews = googlePlayReviews,
+    googlePlayRating = googlePlayRating,
+    googlePlayAbout = googlePlayAbout,
+    appStoreRating = appStoreRating,
+    appStoreReviews = appStoreReviews,
+    appStoreSize = appStoreSize,
+    appStoreChartRank = appStoreChartRank,
+    appStoreChartCategory = appStoreChartCategory,
+    appStoreAbout = appStoreAbout,
+    appStoreAgeRating = appStoreAgeRating,
+    appStorePrivacyPolicy = appStorePrivacyPolicy,
+    googlePlayPrivacyPolicy = googlePlayPrivacyPolicy,
+    appWebsiteUrl = appWebsiteUrl
 )

@@ -13,5 +13,20 @@ data class AppStory(
     val revenue: String? = null,
     val publisher: String? = null,
     val releaseDate: String? = null,
-    val category: String? = null
+    val category: String? = null,
+    val googlePlayUrl: String? = null,
+    val appStoreUrl: String? = null,
+    val googlePlayReviews: String? = null,
+    val googlePlayRating: Double? = null,
+    val googlePlayAbout: String? = null,
+    val appStoreRating: Double? = null,
+    val appStoreReviews: Int? = null,
+    val appStoreSize: String? = null,
+    val appStoreChartRank: Int? = null,
+    val appStoreChartCategory: String? = null,
+    val appStoreAbout: String? = null,
+    val appStoreAgeRating: String? = null,
+    val appStorePrivacyPolicy: String? = null,
+    val googlePlayPrivacyPolicy: String? = null,
+    val appWebsiteUrl: String? = null
 )

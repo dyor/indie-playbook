@@ -42,14 +42,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.indieplaybook.app.designsystem.components.ScreenWithToolbar
 import com.indieplaybook.app.designsystem.theme.AppTheme
 import com.indieplaybook.app.domain.model.AppStory
-import org.jetbrains.compose.resources.painterResource
 import com.indieplaybook.app.generated.resources.Res
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun HomeFeedScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeFeedViewModel,
-    onNavigateToDetail: (String) -> Unit
+    onNavigateToDetail: (String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -57,7 +57,7 @@ fun HomeFeedScreen(
         modifier = modifier.fillMaxSize(),
         uiState = uiState,
         onUiEvent = viewModel::onUiEvent,
-        onNavigateToDetail = onNavigateToDetail
+        onNavigateToDetail = onNavigateToDetail,
     )
 }
 
@@ -66,7 +66,7 @@ fun HomeFeedScreen(
     modifier: Modifier = Modifier,
     uiState: HomeFeedUiState,
     onUiEvent: (HomeFeedUiEvent) -> Unit,
-    onNavigateToDetail: (String) -> Unit
+    onNavigateToDetail: (String) -> Unit,
 ) {
     ScreenWithToolbar(
         modifier = modifier,
@@ -75,19 +75,18 @@ fun HomeFeedScreen(
         includeBottomInsets = false,
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = AppTheme.spacing.groupedVerticalElementSpacing),
                 horizontalArrangement = Arrangement.spacedBy(AppTheme.spacing.horizontalItemSpacing),
-                contentPadding = PaddingValues(horizontal = AppTheme.spacing.outerSpacing)
+                contentPadding = PaddingValues(horizontal = AppTheme.spacing.outerSpacing),
             ) {
                 items(uiState.filterOptions) { filter ->
                     FilterChip(
                         text = filter,
                         isSelected = uiState.selectedFilter == filter,
-                        onClick = { onUiEvent(HomeFeedUiEvent.OnFilterSelected(filter)) }
+                        onClick = { onUiEvent(HomeFeedUiEvent.OnFilterSelected(filter)) },
                     )
                 }
             }
@@ -96,15 +95,15 @@ fun HomeFeedScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(
                     horizontal = AppTheme.spacing.outerSpacing,
-                    vertical = AppTheme.spacing.groupedVerticalElementSpacing
+                    vertical = AppTheme.spacing.groupedVerticalElementSpacing,
                 ),
-                verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing)
+                verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing),
             ) {
                 items(uiState.stories, key = { it.id }) { story ->
                     AppStoryCard(
                         story = story,
                         onClick = { onNavigateToDetail(story.id) },
-                        onBookmarkClick = { onUiEvent(HomeFeedUiEvent.OnBookmarkClicked(story)) }
+                        onBookmarkClick = { onUiEvent(HomeFeedUiEvent.OnBookmarkClicked(story)) },
                     )
                 }
             }
@@ -116,7 +115,7 @@ fun HomeFeedScreen(
 fun FilterChip(
     text: String,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val platformColor = when (text) {
         "Flutter" -> Color(0xFF02569B)
@@ -138,13 +137,13 @@ fun FilterChip(
     Surface(
         shape = CircleShape,
         color = backgroundColor,
-        modifier = Modifier.clickable(onClick = onClick)
+        modifier = Modifier.clickable(onClick = onClick),
     ) {
         Text(
             text = "$emoji$text",
             color = textColor,
             style = AppTheme.typography.bodyMedium,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
         )
     }
 }
@@ -153,7 +152,7 @@ fun FilterChip(
 fun AppStoryCard(
     story: AppStory,
     onClick: () -> Unit,
-    onBookmarkClick: () -> Unit
+    onBookmarkClick: () -> Unit,
 ) {
     Card(
         modifier = Modifier
@@ -161,25 +160,25 @@ fun AppStoryCard(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = AppTheme.colors.surfaceContainer
-        )
+            containerColor = AppTheme.colors.surfaceContainer,
+        ),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(
                         modifier = Modifier
                             .size(48.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(AppTheme.colors.outline)
+                            .background(AppTheme.colors.outline),
                     ) {
                         val iconText = when (story.category) {
                             "Photo & Video" -> "📸"
@@ -209,7 +208,7 @@ fun AppStoryCard(
                             text = story.name,
                             style = AppTheme.typography.h6,
                             fontWeight = FontWeight.Bold,
-                            color = AppTheme.colors.text.primary
+                            color = AppTheme.colors.text.primary,
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -219,7 +218,7 @@ fun AppStoryCard(
                                 Text(
                                     text = story.category,
                                     style = AppTheme.typography.bodyExtraSmall,
-                                    color = AppTheme.colors.text.secondary
+                                    color = AppTheme.colors.text.secondary,
                                 )
                             }
                         }
@@ -228,7 +227,7 @@ fun AppStoryCard(
 
                 // Placeholder bookmark icon using text for now
                 IconButton(onClick = onBookmarkClick, modifier = Modifier.size(32.dp)) {
-                     Text(if (story.isBookmarked) "★" else "☆", color = if (story.isBookmarked) AppTheme.colors.primary else AppTheme.colors.text.secondary, style = AppTheme.typography.h5)
+                    Text(if (story.isBookmarked) "★" else "☆", color = if (story.isBookmarked) AppTheme.colors.primary else AppTheme.colors.text.secondary, style = AppTheme.typography.h5)
                 }
             }
 
@@ -237,7 +236,7 @@ fun AppStoryCard(
             Text(
                 text = story.oneLiner,
                 style = AppTheme.typography.bodyMedium,
-                color = AppTheme.colors.text.secondary
+                color = AppTheme.colors.text.secondary,
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -246,7 +245,7 @@ fun AppStoryCard(
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         if (!story.downloads.isNullOrBlank()) {
@@ -254,14 +253,14 @@ fun AppStoryCard(
                                 Text(
                                     text = "Downloads:",
                                     style = AppTheme.typography.bodySmall,
-                                    color = AppTheme.colors.text.secondary
+                                    color = AppTheme.colors.text.secondary,
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
                                     text = story.downloads,
                                     style = AppTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.Bold,
-                                    color = AppTheme.colors.primary
+                                    color = AppTheme.colors.primary,
                                 )
                             }
                         }
@@ -270,14 +269,14 @@ fun AppStoryCard(
                                 Text(
                                     text = "Revenue:",
                                     style = AppTheme.typography.bodySmall,
-                                    color = AppTheme.colors.text.secondary
+                                    color = AppTheme.colors.text.secondary,
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
                                     text = story.revenue,
                                     style = AppTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.Bold,
-                                    color = AppTheme.colors.status.success
+                                    color = AppTheme.colors.status.success,
                                 )
                             }
                         }
@@ -288,14 +287,14 @@ fun AppStoryCard(
                             Text(
                                 text = "By ${story.publisher}",
                                 style = AppTheme.typography.bodySmall,
-                                color = AppTheme.colors.text.secondary
+                                color = AppTheme.colors.text.secondary,
                             )
                         }
                         if (!story.releaseDate.isNullOrBlank()) {
                             Text(
                                 text = "Released: ${story.releaseDate}",
                                 style = AppTheme.typography.bodyExtraSmall,
-                                color = AppTheme.colors.text.secondary.copy(alpha = 0.7f)
+                                color = AppTheme.colors.text.secondary.copy(alpha = 0.7f),
                             )
                         }
                     }
@@ -325,13 +324,13 @@ fun TechStackBadge(techStack: String) {
         modifier = Modifier
             .clip(RoundedCornerShape(4.dp))
             .background(backgroundColor)
-            .padding(horizontal = 6.dp, vertical = 2.dp)
+            .padding(horizontal = 6.dp, vertical = 2.dp),
     ) {
         Text(
             text = "$emoji$techStack",
             style = AppTheme.typography.bodyExtraSmall,
             color = Color.White,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
         )
     }
 }

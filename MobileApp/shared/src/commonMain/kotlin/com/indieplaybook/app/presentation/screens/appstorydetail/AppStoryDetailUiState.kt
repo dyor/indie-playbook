@@ -4,7 +4,7 @@ import com.indieplaybook.app.domain.model.AppStory
 
 data class AppStoryDetailUiState(
     val storyId: String = "",
-    val story: AppStory? = null
+    val story: AppStory? = null,
 )
 
 sealed interface AppStoryDetailUiEvent {

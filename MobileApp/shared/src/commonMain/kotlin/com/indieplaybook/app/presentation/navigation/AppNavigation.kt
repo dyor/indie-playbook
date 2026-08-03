@@ -272,7 +272,7 @@ private fun EntryProviderScope<ScreenRoute>.screens(navigator: Navigator) {
         val viewModel = koinViewModel<HomeFeedViewModel>()
         HomeFeedScreen(
             viewModel = viewModel,
-            onNavigateToDetail = { id -> navigator.navigate(AppStoryDetailScreenRoute(id = id)) }
+            onNavigateToDetail = { id -> navigator.navigate(AppStoryDetailScreenRoute(id = id)) },
         )
     }
 
@@ -280,17 +280,17 @@ private fun EntryProviderScope<ScreenRoute>.screens(navigator: Navigator) {
         val viewModel = koinViewModel<SavedBookmarksViewModel>()
         SavedBookmarksScreen(
             viewModel = viewModel,
-            onNavigateToDetail = { id -> navigator.navigate(AppStoryDetailScreenRoute(id = id)) }
+            onNavigateToDetail = { id -> navigator.navigate(AppStoryDetailScreenRoute(id = id)) },
         )
     }
 
     entry<AppStoryDetailScreenRoute> { key ->
         val viewModel = koinViewModel<AppStoryDetailViewModel>(
-            parameters = { parametersOf(key.id) }
+            parameters = { parametersOf(key.id) },
         )
         AppStoryDetailScreen(
             viewModel = viewModel,
-            onNavigateBack = { navigator.goBack() }
+            onNavigateBack = { navigator.goBack() },
         )
     }
 

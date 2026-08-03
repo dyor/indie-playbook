@@ -19,7 +19,7 @@ import com.indieplaybook.app.presentation.screens.homefeed.AppStoryCard
 fun SavedBookmarksScreen(
     modifier: Modifier = Modifier,
     viewModel: SavedBookmarksViewModel,
-    onNavigateToDetail: (String) -> Unit
+    onNavigateToDetail: (String) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -27,7 +27,7 @@ fun SavedBookmarksScreen(
         modifier = modifier.fillMaxSize(),
         uiState = uiState,
         onUiEvent = viewModel::onUiEvent,
-        onNavigateToDetail = onNavigateToDetail
+        onNavigateToDetail = onNavigateToDetail,
     )
 }
 
@@ -36,7 +36,7 @@ fun SavedBookmarksScreen(
     modifier: Modifier = Modifier,
     uiState: SavedBookmarksUiState,
     onUiEvent: (SavedBookmarksUiEvent) -> Unit,
-    onNavigateToDetail: (String) -> Unit
+    onNavigateToDetail: (String) -> Unit,
 ) {
     ScreenWithToolbar(
         modifier = modifier,
@@ -49,22 +49,22 @@ fun SavedBookmarksScreen(
                 Text(
                     text = "No bookmarks yet",
                     style = AppTheme.typography.bodyMedium,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
             } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(
                         horizontal = AppTheme.spacing.outerSpacing,
-                        vertical = AppTheme.spacing.groupedVerticalElementSpacing
+                        vertical = AppTheme.spacing.groupedVerticalElementSpacing,
                     ),
-                    verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing)
+                    verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing),
                 ) {
                     items(uiState.bookmarkedStories, key = { it.id }) { story ->
                         AppStoryCard(
                             story = story,
                             onClick = { onNavigateToDetail(story.id) },
-                            onBookmarkClick = { onUiEvent(SavedBookmarksUiEvent.OnBookmarkClicked(story)) }
+                            onBookmarkClick = { onUiEvent(SavedBookmarksUiEvent.OnBookmarkClicked(story)) },
                         )
                     }
                 }

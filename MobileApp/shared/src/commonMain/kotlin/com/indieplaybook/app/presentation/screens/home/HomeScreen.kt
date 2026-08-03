@@ -276,7 +276,7 @@ private fun HomeMainContent(
 private fun HomeStoreScreenshot_iPhone_en() {
     AppTheme {
         val myBalance = 12
-        HomeScreen(uiState = HomeUiState(creditBalance = myBalance ), onUiEvent = {})
+        HomeScreen(uiState = HomeUiState(creditBalance = myBalance), onUiEvent = {})
     }
 }
 

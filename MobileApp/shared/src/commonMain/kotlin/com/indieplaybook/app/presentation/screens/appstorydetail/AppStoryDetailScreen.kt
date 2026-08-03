@@ -213,6 +213,39 @@ fun AppStoryDetailScreen(
                     title = "The Growth Playbook",
                     content = story.growthPlaybook
                 )
+
+                // Extra App Store Details
+                if (!story.appStoreAbout.isNullOrBlank() || !story.googlePlayAbout.isNullOrBlank()) {
+                    DetailSection(
+                        title = "Store Description",
+                        content = story.appStoreAbout ?: story.googlePlayAbout ?: ""
+                    )
+                }
+
+                if (!story.googlePlayUrl.isNullOrBlank()) {
+                    Text(
+                        text = "Play Store: ${story.googlePlayUrl}",
+                        style = AppTheme.typography.bodySmall,
+                        color = AppTheme.colors.primary,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+
+                if (!story.appStoreUrl.isNullOrBlank()) {
+                    Text(
+                        text = "App Store: ${story.appStoreUrl}",
+                        style = AppTheme.typography.bodySmall,
+                        color = AppTheme.colors.primary,
+                    )
+                }
+
+                if (!story.appWebsiteUrl.isNullOrBlank()) {
+                    Text(
+                        text = "Website: ${story.appWebsiteUrl}",
+                        style = AppTheme.typography.bodySmall,
+                        color = AppTheme.colors.primary,
+                    )
+                }
             }
         }
     }

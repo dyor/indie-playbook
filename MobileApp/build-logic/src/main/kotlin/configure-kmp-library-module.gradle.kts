@@ -44,7 +44,7 @@ kotlinMultiplatform {
     }
 
     iosArm64()
-    iosSimulatorArm64()
+    iosSimulatorArm64(); iosX64()
 
     jvm()
     wasmJs {
