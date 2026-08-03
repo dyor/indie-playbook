@@ -16,19 +16,19 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalCoroutinesApi::class)
 class AppStoryDetailViewModel(
     private val storyId: String,
-    private val appStoryRepository: AppStoryRepository
+    private val appStoryRepository: AppStoryRepository,
 ) : ViewModel() {
 
-    private val _storyIdFlow = MutableStateFlow(storyId)
+    private val storyIdFlow = MutableStateFlow(storyId)
 
-    val uiState: StateFlow<AppStoryDetailUiState> = _storyIdFlow.flatMapLatest { id ->
+    val uiState: StateFlow<AppStoryDetailUiState> = storyIdFlow.flatMapLatest { id ->
         if (id.isEmpty()) {
             flowOf(AppStoryDetailUiState())
         } else {
             appStoryRepository.getStoryById(id).map { story ->
                 AppStoryDetailUiState(
                     storyId = id,
-                    story = story
+                    story = story,
                 )
             }
         }

@@ -13,14 +13,14 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeFeedViewModel(
-    private val appStoryRepository: AppStoryRepository
+    private val appStoryRepository: AppStoryRepository,
 ) : ViewModel() {
 
-    private val _selectedFilter = MutableStateFlow("All")
+    private val selectedFilterFlow = MutableStateFlow("All")
 
     val uiState: StateFlow<HomeFeedUiState> = combine(
         appStoryRepository.getAllStories(),
-        _selectedFilter
+        selectedFilterFlow,
     ) { stories, selectedFilter ->
         val filteredStories = if (selectedFilter == "All") {
             stories
@@ -29,7 +29,7 @@ class HomeFeedViewModel(
         }
         HomeFeedUiState(
             selectedFilter = selectedFilter,
-            stories = filteredStories
+            stories = filteredStories,
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, HomeFeedUiState())
 
@@ -42,11 +42,13 @@ class HomeFeedViewModel(
     fun onUiEvent(event: HomeFeedUiEvent) {
         when (event) {
             is HomeFeedUiEvent.OnFilterSelected -> {
-                _selectedFilter.value = event.filter
+                selectedFilterFlow.value = event.filter
             }
+
             is HomeFeedUiEvent.OnStoryClicked -> {
                 // Navigated from UI directly
             }
+
             is HomeFeedUiEvent.OnBookmarkClicked -> {
                 viewModelScope.launch {
                     appStoryRepository.toggleBookmark(event.story.id)
