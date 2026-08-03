@@ -36,7 +36,7 @@ import com.indieplaybook.app.presentation.screens.homefeed.TechStackBadge
 fun AppStoryDetailScreen(
     modifier: Modifier = Modifier,
     viewModel: AppStoryDetailViewModel,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -44,7 +44,7 @@ fun AppStoryDetailScreen(
         modifier = modifier.fillMaxSize(),
         uiState = uiState,
         onUiEvent = viewModel::onUiEvent,
-        onNavigateBack = onNavigateBack
+        onNavigateBack = onNavigateBack,
     )
 }
 
@@ -53,7 +53,7 @@ fun AppStoryDetailScreen(
     modifier: Modifier = Modifier,
     uiState: AppStoryDetailUiState,
     onUiEvent: (AppStoryDetailUiEvent) -> Unit,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val story = uiState.story
 
@@ -68,39 +68,39 @@ fun AppStoryDetailScreen(
             if (story != null) {
                 IconButton(
                     onClick = { onUiEvent(AppStoryDetailUiEvent.OnBookmarkClicked) },
-                    modifier = Modifier.size(32.dp)
+                    modifier = Modifier.size(32.dp),
                 ) {
                     Text(
                         text = if (story.isBookmarked) "★" else "☆",
                         color = if (story.isBookmarked) AppTheme.colors.primary else AppTheme.colors.text.secondary,
-                        style = AppTheme.typography.h5
+                        style = AppTheme.typography.h5,
                     )
                 }
             }
-        }
+        },
     ) {
         if (story != null) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = AppTheme.spacing.outerSpacing, vertical = AppTheme.spacing.groupedVerticalElementSpacing),
-                verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing)
+                verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing),
             ) {
                 // Header Card
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = AppTheme.colors.surfaceContainer)
+                    colors = CardDefaults.cardColors(containerColor = AppTheme.colors.surfaceContainer),
                 ) {
                     Row(
                         modifier = Modifier.padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Box(
                             modifier = Modifier
                                 .size(64.dp)
                                 .clip(RoundedCornerShape(16.dp))
-                                .background(AppTheme.colors.outline)
+                                .background(AppTheme.colors.outline),
                         ) {
                             val iconText = when (story.category) {
                                 "Photo & Video" -> "📸"
@@ -125,7 +125,7 @@ fun AppStoryDetailScreen(
                             Text(
                                 text = iconText,
                                 modifier = Modifier.align(Alignment.Center),
-                                style = AppTheme.typography.h3
+                                style = AppTheme.typography.h3,
                             )
                         }
                         Spacer(modifier = Modifier.width(16.dp))
@@ -134,7 +134,7 @@ fun AppStoryDetailScreen(
                                 text = story.name,
                                 style = AppTheme.typography.h5,
                                 fontWeight = FontWeight.Bold,
-                                color = AppTheme.colors.text.primary
+                                color = AppTheme.colors.text.primary,
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -144,7 +144,7 @@ fun AppStoryDetailScreen(
                                     Text(
                                         text = story.category,
                                         style = AppTheme.typography.bodyExtraSmall,
-                                        color = AppTheme.colors.text.secondary
+                                        color = AppTheme.colors.text.secondary,
                                     )
                                 }
                             }
@@ -154,14 +154,14 @@ fun AppStoryDetailScreen(
                                     Text(
                                         text = "Downloads:",
                                         style = AppTheme.typography.bodySmall,
-                                        color = AppTheme.colors.text.secondary
+                                        color = AppTheme.colors.text.secondary,
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Text(
                                         text = story.downloads,
                                         style = AppTheme.typography.bodyMedium,
                                         fontWeight = FontWeight.Bold,
-                                        color = AppTheme.colors.primary
+                                        color = AppTheme.colors.primary,
                                     )
                                 }
                             }
@@ -171,14 +171,14 @@ fun AppStoryDetailScreen(
                                     Text(
                                         text = "Revenue:",
                                         style = AppTheme.typography.bodySmall,
-                                        color = AppTheme.colors.text.secondary
+                                        color = AppTheme.colors.text.secondary,
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Text(
                                         text = story.revenue,
                                         style = AppTheme.typography.bodyMedium,
                                         fontWeight = FontWeight.Bold,
-                                        color = AppTheme.colors.status.success
+                                        color = AppTheme.colors.status.success,
                                     )
                                 }
                             }
@@ -187,7 +187,7 @@ fun AppStoryDetailScreen(
                                 Text(
                                     text = "Publisher: ${story.publisher}",
                                     style = AppTheme.typography.bodySmall,
-                                    color = AppTheme.colors.text.secondary
+                                    color = AppTheme.colors.text.secondary,
                                 )
                             }
                             if (!story.releaseDate.isNullOrBlank()) {
@@ -195,7 +195,7 @@ fun AppStoryDetailScreen(
                                 Text(
                                     text = "Released: ${story.releaseDate}",
                                     style = AppTheme.typography.bodyExtraSmall,
-                                    color = AppTheme.colors.text.secondary.copy(alpha = 0.7f)
+                                    color = AppTheme.colors.text.secondary.copy(alpha = 0.7f),
                                 )
                             }
                         }
@@ -205,20 +205,20 @@ fun AppStoryDetailScreen(
                 // Origin Story Section
                 DetailSection(
                     title = "The Origin Story",
-                    content = story.originStory
+                    content = story.originStory,
                 )
 
                 // Growth Playbook Section
                 DetailSection(
                     title = "The Growth Playbook",
-                    content = story.growthPlaybook
+                    content = story.growthPlaybook,
                 )
 
                 // Extra App Store Details
                 if (!story.appStoreAbout.isNullOrBlank() || !story.googlePlayAbout.isNullOrBlank()) {
                     DetailSection(
                         title = "Store Description",
-                        content = story.appStoreAbout ?: story.googlePlayAbout ?: ""
+                        content = story.appStoreAbout ?: story.googlePlayAbout ?: "",
                     )
                 }
 
@@ -227,7 +227,7 @@ fun AppStoryDetailScreen(
                         text = "Play Store: ${story.googlePlayUrl}",
                         style = AppTheme.typography.bodySmall,
                         color = AppTheme.colors.primary,
-                        modifier = Modifier.padding(top = 8.dp)
+                        modifier = Modifier.padding(top = 8.dp),
                     )
                 }
 
@@ -254,28 +254,28 @@ fun AppStoryDetailScreen(
 @Composable
 private fun DetailSection(
     title: String,
-    content: String
+    content: String,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.groupedVerticalElementSpacing)
+        verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.groupedVerticalElementSpacing),
     ) {
         Text(
             text = title,
             style = AppTheme.typography.h6,
             fontWeight = FontWeight.Bold,
-            color = AppTheme.colors.primary
+            color = AppTheme.colors.primary,
         )
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
-            colors = CardDefaults.cardColors(containerColor = AppTheme.colors.surfaceContainer)
+            colors = CardDefaults.cardColors(containerColor = AppTheme.colors.surfaceContainer),
         ) {
             Text(
                 text = content,
                 style = AppTheme.typography.bodyLarge,
                 color = AppTheme.colors.text.primary,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
             )
         }
     }

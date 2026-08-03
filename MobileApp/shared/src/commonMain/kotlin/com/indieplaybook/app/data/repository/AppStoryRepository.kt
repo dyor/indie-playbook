@@ -8,18 +8,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class AppStoryRepository(
-    private val appStoryDao: AppStoryDao
+    private val appStoryDao: AppStoryDao,
 ) {
-    fun getAllStories(): Flow<List<AppStory>> {
-        return appStoryDao.getAllFlow().map { entities ->
-            entities.map { it.toModel() }
-        }
+    fun getAllStories(): Flow<List<AppStory>> = appStoryDao.getAllFlow().map { entities ->
+        entities.map { it.toModel() }
     }
 
-    fun getStoryById(id: String): Flow<AppStory?> {
-        return appStoryDao.getByIdFlow(id).map { entity ->
-            entity?.toModel()
-        }
+    fun getStoryById(id: String): Flow<AppStory?> = appStoryDao.getByIdFlow(id).map { entity ->
+        entity?.toModel()
     }
 
     suspend fun toggleBookmark(id: String) {
@@ -48,7 +44,7 @@ class AppStoryRepository(
                     growthPlaybook = "Leveraged Instagram Reels and TikTok AI trend showcases to gain rapid early traction.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "100K+"
+                    downloads = "100K+",
                 ),
                 AppStoryEntity(
                     id = "fiveprayer-pray-on-time",
@@ -59,7 +55,7 @@ class AppStoryRepository(
                     growthPlaybook = "Word-of-mouth growth through community recommendation channels and local App Store optimization.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "50K+"
+                    downloads = "50K+",
                 ),
                 AppStoryEntity(
                     id = "cardiora-blood-pressure",
@@ -70,7 +66,7 @@ class AppStoryRepository(
                     growthPlaybook = "Optimized for health and fitness search keywords with multi-language localization.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "75K+"
+                    downloads = "75K+",
                 ),
                 AppStoryEntity(
                     id = "sticker-album-2026",
@@ -81,7 +77,7 @@ class AppStoryRepository(
                     growthPlaybook = "Gamified referral mechanics where users trade duplicate stickers with friends.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "200K+"
+                    downloads = "200K+",
                 ),
                 AppStoryEntity(
                     id = "pluxee",
@@ -92,7 +88,7 @@ class AppStoryRepository(
                     growthPlaybook = "B2B distribution through corporate benefits packages and HR partnerships.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "500K+"
+                    downloads = "500K+",
                 ),
                 AppStoryEntity(
                     id = "betterspeak-ai-language-tutor",
@@ -103,7 +99,7 @@ class AppStoryRepository(
                     growthPlaybook = "Targeted performance marketing on social media showcasing interactive AI voice conversations.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "300K+"
+                    downloads = "300K+",
                 ),
                 AppStoryEntity(
                     id = "payme-claim-your-money",
@@ -114,7 +110,7 @@ class AppStoryRepository(
                     growthPlaybook = "Viral video demonstrations on TikTok showing users finding real missing money live on screen.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "150K+"
+                    downloads = "150K+",
                 ),
                 AppStoryEntity(
                     id = "yandex-ai-chatbot-assistant",
@@ -125,7 +121,7 @@ class AppStoryRepository(
                     growthPlaybook = "Ecosystem integration and search engine placement across existing user touchpoints.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "1M+"
+                    downloads = "1M+",
                 ),
                 AppStoryEntity(
                     id = "scrambly-rewards-for-steps",
@@ -136,7 +132,7 @@ class AppStoryRepository(
                     growthPlaybook = "User referral loops offering step boosts when inviting friends and family.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "250K+"
+                    downloads = "250K+",
                 ),
                 AppStoryEntity(
                     id = "govauctions-shop-surplus",
@@ -147,7 +143,7 @@ class AppStoryRepository(
                     growthPlaybook = "SEO strategies targeting deal-seeking bargain hunters and thrift communities.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "80K+"
+                    downloads = "80K+",
                 ),
                 AppStoryEntity(
                     id = "her-75",
@@ -158,7 +154,7 @@ class AppStoryRepository(
                     growthPlaybook = "Strong Instagram community building with daily accountability tag challenges.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "60K+"
+                    downloads = "60K+",
                 ),
                 AppStoryEntity(
                     id = "posely-ai-photo-creator",
@@ -169,7 +165,7 @@ class AppStoryRepository(
                     growthPlaybook = "Influencer collaborations showing professional headshot transformations for LinkedIn.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "120K+"
+                    downloads = "120K+",
                 ),
                 AppStoryEntity(
                     id = "pecra-pro-camera-finish",
@@ -180,7 +176,7 @@ class AppStoryRepository(
                     growthPlaybook = "Featured in mobile photography forums and shared aesthetic preset downloads on Pinterest.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "35K+"
+                    downloads = "35K+",
                 ),
                 AppStoryEntity(
                     id = "movies-hub-swipe-and-like",
@@ -191,7 +187,7 @@ class AppStoryRepository(
                     growthPlaybook = "Relatable meme marketing on Reddit (r/movies) and TikTok about couples struggling to pick movies.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "90K+"
+                    downloads = "90K+",
                 ),
                 AppStoryEntity(
                     id = "aleem-english-with-ai",
@@ -202,7 +198,7 @@ class AppStoryRepository(
                     growthPlaybook = "Targeted localization and educational grants in emerging non-English markets.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "70K+"
+                    downloads = "70K+",
                 ),
                 AppStoryEntity(
                     id = "protube-block-ads-on-video",
@@ -213,7 +209,7 @@ class AppStoryRepository(
                     growthPlaybook = "Organic search positioning for utility keywords and privacy tech blogs.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "180K+"
+                    downloads = "180K+",
                 ),
                 AppStoryEntity(
                     id = "pushscroll-screen-time-gym",
@@ -224,7 +220,7 @@ class AppStoryRepository(
                     growthPlaybook = "Went viral on Hacker News and Product Hunt as a unique digital detox utility.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "45K+"
+                    downloads = "45K+",
                 ),
                 AppStoryEntity(
                     id = "lyra-music-radio-esound",
@@ -235,7 +231,7 @@ class AppStoryRepository(
                     growthPlaybook = "App Store optimization targeting free music player search queries.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "220K+"
+                    downloads = "220K+",
                 ),
                 AppStoryEntity(
                     id = "shortical",
@@ -246,7 +242,7 @@ class AppStoryRepository(
                     growthPlaybook = "Cliffhanger social media clips driving users to app for the next episode.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "350K+"
+                    downloads = "350K+",
                 ),
                 AppStoryEntity(
                     id = "minglotalk-ai-character-chat",
@@ -257,7 +253,7 @@ class AppStoryRepository(
                     growthPlaybook = "Community-generated character sharing on Discord and Reddit.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "110K+"
+                    downloads = "110K+",
                 ),
                 AppStoryEntity(
                     id = "eaze-app-talk-and-feel-better",
@@ -268,7 +264,7 @@ class AppStoryRepository(
                     growthPlaybook = "Partnerships with student mental health advocates and peer support groups.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "65K+"
+                    downloads = "65K+",
                 ),
                 AppStoryEntity(
                     id = "vigorbuy-chinas-best-yours",
@@ -279,7 +275,7 @@ class AppStoryRepository(
                     growthPlaybook = "Community guides on Reddit (r/FashionReps, r/Couriers) showcasing unboxing hauls.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "95K+"
+                    downloads = "95K+",
                 ),
                 AppStoryEntity(
                     id = "disha-ai-health-coach",
@@ -290,7 +286,7 @@ class AppStoryRepository(
                     growthPlaybook = "Endorsements from clinic partners and healthcare webinars.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "140K+"
+                    downloads = "140K+",
                 ),
                 AppStoryEntity(
                     id = "v2ray-client-plus",
@@ -301,7 +297,7 @@ class AppStoryRepository(
                     growthPlaybook = "Privacy blog reviews and GitHub community recommendation.",
                     iconUrl = "",
                     isBookmarked = false,
-                    downloads = "200K+"
+                    downloads = "200K+",
                 ),
                 AppStoryEntity(
                     id = "formo-calorie-counter",
@@ -311,33 +307,33 @@ class AppStoryRepository(
                     originStory = "Designed by Ruslan Moroziuk for fitness enthusiasts wanting friction-free macro tracking.",
                     growthPlaybook = "#BuildInPublic updates on Twitter/X and fitness subreddit outreach.",
                     iconUrl = "",
-                isBookmarked = false,
-                downloads = "40K+"
-            ),
-            AppStoryEntity(
-                id = "ai-maker-photo-art-generator",
-                name = "AI Maker: Photo Art Generator",
-                oneLiner = "Artistic style transfer and avatar generator (KMP)",
-                techStack = "Kotlin Multiplatform",
-                originStory = "Created by Hungry Birds using KMP to optimize image filtering pipelines across mobile devices.",
-                growthPlaybook = "Social sharing badges allowing users to share AI avatars directly to Instagram.",
-                iconUrl = "",
-                isBookmarked = false,
-                downloads = "85K+"
-            ),
-            AppStoryEntity(
-                id = "wbuilds-for-building-guide",
-                name = "WBuilds for Building Guide",
-                oneLiner = "Gamer loadout and build guide companion (KMP)",
-                techStack = "Kotlin Multiplatform",
-                originStory = "Built by indie developer Sagar Khurana using KMP for fast, offline-first access to game strategy guides.",
-                growthPlaybook = "SEO traffic from gaming strategy searches and Discord communities.",
-                iconUrl = "",
-                isBookmarked = false,
-                downloads = "30K+"
+                    isBookmarked = false,
+                    downloads = "40K+",
+                ),
+                AppStoryEntity(
+                    id = "ai-maker-photo-art-generator",
+                    name = "AI Maker: Photo Art Generator",
+                    oneLiner = "Artistic style transfer and avatar generator (KMP)",
+                    techStack = "Kotlin Multiplatform",
+                    originStory = "Created by Hungry Birds using KMP to optimize image filtering pipelines across mobile devices.",
+                    growthPlaybook = "Social sharing badges allowing users to share AI avatars directly to Instagram.",
+                    iconUrl = "",
+                    isBookmarked = false,
+                    downloads = "85K+",
+                ),
+                AppStoryEntity(
+                    id = "wbuilds-for-building-guide",
+                    name = "WBuilds for Building Guide",
+                    oneLiner = "Gamer loadout and build guide companion (KMP)",
+                    techStack = "Kotlin Multiplatform",
+                    originStory = "Built by indie developer Sagar Khurana using KMP for fast, offline-first access to game strategy guides.",
+                    growthPlaybook = "SEO traffic from gaming strategy searches and Discord communities.",
+                    iconUrl = "",
+                    isBookmarked = false,
+                    downloads = "30K+",
+                ),
             )
-        )
-        appStoryDao.insertAll(fullStories)
+            appStoryDao.insertAll(fullStories)
+        }
     }
-}
 }

@@ -40,7 +40,7 @@ data class AppStoryEntity(
     @ColumnInfo("app_store_age_rating") val appStoreAgeRating: String? = null,
     @ColumnInfo("app_store_privacy_policy") val appStorePrivacyPolicy: String? = null,
     @ColumnInfo("google_play_privacy_policy") val googlePlayPrivacyPolicy: String? = null,
-    @ColumnInfo("app_website_url") val appWebsiteUrl: String? = null
+    @ColumnInfo("app_website_url") val appWebsiteUrl: String? = null,
 )
 
 fun AppStoryEntity.toModel(): AppStory = AppStory(
@@ -71,7 +71,7 @@ fun AppStoryEntity.toModel(): AppStory = AppStory(
     appStoreAgeRating = appStoreAgeRating,
     appStorePrivacyPolicy = appStorePrivacyPolicy,
     googlePlayPrivacyPolicy = googlePlayPrivacyPolicy,
-    appWebsiteUrl = appWebsiteUrl
+    appWebsiteUrl = appWebsiteUrl,
 )
 
 fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
@@ -102,5 +102,5 @@ fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
     appStoreAgeRating = appStoreAgeRating,
     appStorePrivacyPolicy = appStorePrivacyPolicy,
     googlePlayPrivacyPolicy = googlePlayPrivacyPolicy,
-    appWebsiteUrl = appWebsiteUrl
+    appWebsiteUrl = appWebsiteUrl,
 )
