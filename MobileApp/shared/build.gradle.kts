@@ -29,7 +29,6 @@ kotlin {
             }
 
             group("nonMobile") {
-                withJs()
                 withJvm()
             }
 
@@ -171,8 +170,6 @@ kotlin {
         val webMain by getting {
             dependencies {
                 implementation(libs.sqlite.web)
-                implementation(npm("@sqlite.org/sqlite-wasm", "3.50.1-build1"))
-                implementation(npm("sqlite-wasm-worker", project.file("sqlite-wasm-worker")))
             }
         }
     }

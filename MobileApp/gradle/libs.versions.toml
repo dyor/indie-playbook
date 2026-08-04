@@ -83,7 +83,7 @@ firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
 google-admob = { module = "com.google.android.gms:play-services-ads", version.ref = "admob" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kmpauth-firebase = { module = "io.github.mirzemehdi:kmpauth-firebase", version.ref = "kmpauth" }
-gitlive-firebase-firestore = { module = "dev.gitlive:firebase-firestore", version = "1.10.4" }
+gitlive-firebase-firestore = { module = "dev.gitlive:firebase-firestore", version = "2.5.0" }
 kmpauth-google = { module = "io.github.mirzemehdi:kmpauth-google", version.ref = "kmpauth" }
 kmpauth-uihelper = { module = "io.github.mirzemehdi:kmpauth-uihelper", version.ref = "kmpauth" }
 kmpnotifier-push-firebase = { module = "io.github.mirzemehdi:kmpnotifier-push-firebase", version.ref = "kmpnotifier" }

@@ -1,11 +1,9 @@
-@file:OptIn(ExperimentalWasmDsl::class, ExperimentalKotlinGradlePluginApi::class)
-
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import extensions.kotlinMultiplatform
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
@@ -36,8 +34,6 @@ kotlinMultiplatform {
             }
 
             group("nonMobile") {
-                withJs()
-                withWasmJs()
                 withJvm()
             }
         }
@@ -47,15 +43,6 @@ kotlinMultiplatform {
     iosSimulatorArm64()
 
     jvm()
-    wasmJs {
-        browser()
-    }
-    js(IR) {
-        nodejs()
-        browser()
-        binaries.library()
-    }
-
     sourceSets {
         commonMain.dependencies { }
     }
