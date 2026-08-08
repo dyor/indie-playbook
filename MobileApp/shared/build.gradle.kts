@@ -64,11 +64,6 @@ kotlin {
     }
 
     jvm()
-    // Browser test tasks need a headless browser (Karma) that isn't available in CI / `check`,
-    // and they'd just re-run the same commonTest already covered by jvmTest + testAndroidHostTest.
-    // Disable the test run only; the browser() app target is unaffected.
-    js { browser { testTask { enabled = false } } }
-    @OptIn(ExperimentalWasmDsl::class)
     sourceSets {
         commonMain.dependencies {
             implementation(projects.designsystem)
@@ -76,6 +71,7 @@ kotlin {
             api(libs.compose.ui)
             api(libs.koin.core)
             api(libs.kmpnotifier.push.firebase)
+            api(libs.gitlive.firebase.firestore)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material.icons)
             implementation(libs.compose.material3)
@@ -166,12 +162,6 @@ kotlin {
                 implementation(libs.sqlite.bundled)
             }
         }
-
-        val webMain by getting {
-            dependencies {
-                implementation(libs.sqlite.web)
-            }
-        }
     }
 }
 
@@ -233,7 +223,6 @@ dependencies {
     add("kspIosArm64", libs.room.compiler)
     add("kspIosSimulatorArm64", libs.room.compiler)
     add("kspJvm", libs.room.compiler)
-    add("kspJs", libs.room.compiler)
 
     // Compose UI tooling — runtime-only artifact for inspecting the composition tree at runtime.
     // Per the JetBrains KMP-library AGP 9 skill, `androidRuntimeClasspath` keeps it off compile.

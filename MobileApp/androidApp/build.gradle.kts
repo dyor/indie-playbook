@@ -90,6 +90,7 @@ android {
 
 dependencies {
     implementation(projects.shared)
+    implementation(platform(libs.firebase.bom))
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.koin.android)

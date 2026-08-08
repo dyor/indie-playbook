@@ -5,6 +5,11 @@ description: Phase-2 guide that connects the locally-running KMP app to services
 
 # Phase 2 — Integrations (connect to services)
 
+> [!IMPORTANT]
+> **⚠️ Critical SDK Version & KMP WASM Limitation**
+> - **Gitlive Version**: Always use **at least version `2.5.0`** of the Gitlive Firebase Kotlin SDK. The latest stable version can be found at [GitLiveApp/firebase-kotlin-sdk](https://github.com/GitLiveApp/firebase-kotlin-sdk).
+> - **WASM Technical Limitation**: Gitlive Firebase does **not** support Kotlin/WASM (`wasmJs` target). If your project contains a WASM target, it **must** be dropped or completely excluded from KMP compilation once Firestore/Firebase is added, as Gitlive libraries will cause compilation failures on WASM.
+
 **Goal:** take the app that already builds and runs locally (from the `getting-started` phase) and
 connect it to real services — a Firebase project with anonymous auth, Google/Apple social sign-in,
 and the web-proxy Cloud Functions backend (OpenAI / Replicate) so live remote calls return data.
