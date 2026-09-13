@@ -16,29 +16,33 @@ data class OnBoardingScreenData(
     val title: StringResource,
     val description: StringResource,
     val imageRes: DrawableResource,
+    val linkText: String? = null,
+    val linkUrl: String? = null,
+    val hasMethodologyLink: Boolean = false,
 )
 
 data class OnBoardingUiState(
-
     val pages: List<OnBoardingScreenData> = listOf(
         OnBoardingScreenData(
-            Res.string.title_onboarding_page_1,
-            Res.string.desc_onboarding_page_1,
-            UiRes.drawable.ic_logo,
+            title = Res.string.title_onboarding_page_1,
+            description = Res.string.desc_onboarding_page_1,
+            imageRes = UiRes.drawable.ic_logo,
         ),
         OnBoardingScreenData(
-            Res.string.title_onboarding_page_2,
-            Res.string.desc_onboarding_page_2,
-            UiRes.drawable.ic_logo,
+            title = Res.string.title_onboarding_page_2,
+            description = Res.string.desc_onboarding_page_2,
+            imageRes = UiRes.drawable.ic_logo,
+            linkText = "🌐 Visit AppFigures (appfigures.com)",
+            linkUrl = "https://appfigures.com",
+            hasMethodologyLink = true,
         ),
         OnBoardingScreenData(
-            Res.string.title_onboarding_page_3,
-            Res.string.desc_onboarding_page_3,
-            UiRes.drawable.ic_logo,
+            title = Res.string.title_onboarding_page_3,
+            description = Res.string.desc_onboarding_page_3,
+            imageRes = UiRes.drawable.ic_logo,
         ),
     ),
     val isOnBoardingFinished: Boolean = false,
-    // isNewUser distinguishes a fresh completion from an already-onboarded user
     val isNewUser: Boolean = false,
     val isLoading: Boolean = true,
 )

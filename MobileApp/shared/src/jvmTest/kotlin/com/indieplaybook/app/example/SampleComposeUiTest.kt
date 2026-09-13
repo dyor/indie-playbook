@@ -6,56 +6,72 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.runComposeUiTest
 import com.indieplaybook.app.designsystem.theme.AppTheme
-import com.indieplaybook.app.presentation.screens.home.HomeScreen
-import com.indieplaybook.app.presentation.screens.home.HomeUiEvent
-import com.indieplaybook.app.presentation.screens.home.HomeUiState
+import com.indieplaybook.app.domain.model.AppStory
+import com.indieplaybook.app.presentation.screens.homefeed.HomeFeedScreen
+import com.indieplaybook.app.presentation.screens.homefeed.HomeFeedUiEvent
+import com.indieplaybook.app.presentation.screens.homefeed.HomeFeedUiState
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-/**
- * Template for verifying a REAL app screen headlessly — copy this shape for new screens.
- *
- * How it works: every screen has a **pure overload** taking `uiState` + `onUiEvent` instead of a
- * ViewModel, so a test can render it with no Koin, no ViewModel, no device and no browser. Queries
- * go through Compose's semantics tree (the same data a screen reader uses), so
- * `onNodeWithText("42")` matches real rendered text rather than a pixel guess.
- *
- * Run: `./gradlew :shared:jvmTest` — ~2s warm, and part of the PR gate.
- *
- * This covers behaviour. For *visual* checks (layout, spacing, theming) add a `@Preview` — it is
- * snapshotted automatically by `PreviewScreenshotTest`; see the `verify-ui` skill.
- */
 @OptIn(ExperimentalTestApi::class)
 class SampleComposeUiTest {
+
     @Test
-    fun `home screen renders the credit balance from uiState`() = runComposeUiTest {
+    fun `home feed renders app story items and filter chips`() = runComposeUiTest {
         setContent {
             AppTheme {
-                HomeScreen(uiState = HomeUiState(creditBalance = 42), onUiEvent = {})
+                HomeFeedScreen(
+                    uiState = HomeFeedUiState(
+                        stories = listOf(
+                            AppStory(
+                                id = "test-1",
+                                name = "TestApp",
+                                oneLiner = "An amazing cross-platform app",
+                                category = "Productivity",
+                                techStack = "KMP",
+                                iconUrl = "",
+                                isBookmarked = false,
+                                originStory = "Created to solve testing",
+                                growthPlaybook = "Word of mouth",
+                            ),
+                        ),
+                    ),
+                    onUiEvent = {},
+                    onNavigateToDetail = {},
+                    onNavigateToSuggestNewApp = {},
+                )
             }
         }
 
-        // The toolbar credit chip reflects state directly.
-        onNodeWithText("42").assertExists()
+        onNodeWithText("TestApp").assertIsEnabled()
+        onNodeWithText("An amazing cross-platform app").assertIsEnabled()
+        onNodeWithText("Suggest a New App").assertIsEnabled()
     }
 
     @Test
-    fun `clicking the credit chip emits OnClickToolbarCredits`() = runComposeUiTest {
-        val events = mutableListOf<HomeUiEvent>()
+    fun `clicking filter chip emits OnFrameworkFilterSelected`() = runComposeUiTest {
+        val events = mutableListOf<HomeFeedUiEvent>()
 
         setContent {
             AppTheme {
-                HomeScreen(uiState = HomeUiState(creditBalance = 7), onUiEvent = { events += it })
+                HomeFeedScreen(
+                    uiState = HomeFeedUiState(
+                        frameworkFilterOptions = listOf("All", "Flutter", "React Native", "KMP"),
+                    ),
+                    onUiEvent = { events += it },
+                    onNavigateToDetail = {},
+                    onNavigateToSuggestNewApp = {},
+                )
             }
         }
 
-        onNodeWithText("7")
+        onNodeWithText("Flutter")
             .assertIsEnabled()
             .performClick()
 
         assertTrue(
-            events.any { it is HomeUiEvent.OnClickToolbarCredits },
-            "expected OnClickToolbarCredits, got $events",
+            events.any { it is HomeFeedUiEvent.OnFrameworkFilterSelected && it.filter == "Flutter" },
+            "expected OnFrameworkFilterSelected(Flutter), got $events",
         )
     }
 }

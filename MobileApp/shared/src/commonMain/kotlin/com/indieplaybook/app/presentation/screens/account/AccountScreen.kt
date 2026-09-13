@@ -65,6 +65,7 @@ fun AccountScreen(
     onNavigateSignIn: () -> Unit,
     onNavigateProfile: () -> Unit,
     onNavigateSubscriptions: () -> Unit,
+    onNavigateToAdminReviewSuggestions: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -80,6 +81,7 @@ fun AccountScreen(
             .fillMaxSize()
             .background(AppTheme.colors.background),
         uiState = uiState,
+        onNavigateToAdminReviewSuggestions = onNavigateToAdminReviewSuggestions,
         onUiEvent = {
             when (it) {
                 is AccountUiEvent.OnSettingsItemClick -> {
@@ -113,6 +115,7 @@ fun AccountScreen(
     modifier: Modifier = Modifier,
     uiState: AccountUiState,
     onUiEvent: (AccountUiEvent) -> Unit,
+    onNavigateToAdminReviewSuggestions: () -> Unit = {},
 ) {
     ScreenWithToolbar(
         modifier = modifier,
@@ -136,6 +139,39 @@ fun AccountScreen(
                     }
                 })
             }
+
+            if (uiState.user?.isAdmin == true) {
+                AppCardContainer(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = onNavigateToAdminReviewSuggestions,
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        Column {
+                            Text(
+                                text = "🛠️ Admin Panel",
+                                style = AppTheme.typography.h6,
+                                fontWeight = FontWeight.Bold,
+                                color = AppTheme.colors.primary,
+                            )
+                            Text(
+                                text = "Review & approve user suggested edits",
+                                style = AppTheme.typography.bodySmall,
+                                color = AppTheme.colors.text.secondary,
+                            )
+                        }
+                        Icon(
+                            imageVector = vectorResource(UiRes.drawable.ic_arrow_right),
+                            contentDescription = null,
+                            tint = AppTheme.colors.primary,
+                        )
+                    }
+                }
+            }
+
             SettingItemListContainer(
                 itemList = uiState.settingsItemList,
                 onClick = { onUiEvent(AccountUiEvent.OnSettingsItemClick(it)) },

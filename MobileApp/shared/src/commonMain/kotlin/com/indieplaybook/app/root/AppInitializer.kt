@@ -130,7 +130,9 @@ private fun initializeNotification() {
 }
 
 private fun initializeAuthentication() {
-    GoogleAuthProvider.create(credentials = GoogleAuthCredentials(serverId = BuildConfig.GOOGLE_WEB_CLIENT_ID))
+    if (BuildConfig.GOOGLE_WEB_CLIENT_ID.isNotBlank()) {
+        GoogleAuthProvider.create(credentials = GoogleAuthCredentials(serverId = BuildConfig.GOOGLE_WEB_CLIENT_ID))
+    }
 }
 
 private fun KoinApplication.initializeInAppPurchase() {

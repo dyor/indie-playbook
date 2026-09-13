@@ -3,6 +3,7 @@
 package com.indieplaybook.app.data.repository
 
 import com.indieplaybook.app.auth.api.AuthProviderUser
+import com.indieplaybook.app.root.AppConfiguration
 import com.indieplaybook.app.auth.api.AuthServiceProvider
 import com.indieplaybook.app.data.BackgroundExecutor
 import com.indieplaybook.app.data.source.preferences.UserPreferences
@@ -93,11 +94,16 @@ class UserRepository(
         Result.success(Unit)
     }
 
-    private fun AuthProviderUser.asUser(): User = User(
-        id = id,
-        isAnonymous = isAnonymous,
-        email = email,
-        displayName = displayName,
-        photoUrl = photoUrl,
-    )
+    private fun AuthProviderUser.asUser(): User {
+        val userEmail = email
+        val isAdminUser = !isAnonymous && userEmail != null && AppConfiguration.ADMIN_EMAILS.any { it.equals(userEmail, ignoreCase = true) }
+        return User(
+            id = id,
+            isAnonymous = isAnonymous,
+            email = email,
+            displayName = displayName,
+            photoUrl = photoUrl,
+            isAdmin = isAdminUser,
+        )
+    }
 }

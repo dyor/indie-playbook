@@ -16,13 +16,13 @@ import com.indieplaybook.app.subscription.config.activeSubscriptionProviderFacto
 object AppConfiguration {
 
     // TODO(publish): your live privacy policy URL — stores reject placeholders (`publishing` skill).
-    const val URL_PRIVACY_POLICY = "https://indieplaybook.kappmaker.com/privacy-policy"
+    const val URL_PRIVACY_POLICY = "https://koko-demo-71050.web.app/privacy-policy.html"
 
     // TODO(publish): your live terms & conditions URL (`publishing` skill).
-    const val URL_TERMS_CONDITIONS = "https://indieplaybook.kappmaker.com/terms-and-conditions"
+    const val URL_TERMS_CONDITIONS = "https://koko-demo-71050.web.app/terms-conditions.html"
 
     // TODO(publish): your real support email — ships as boilerplate (`publishing` skill).
-    const val CONTACT_EMAIL = "support@example.com"
+    const val CONTACT_EMAIL = "admin@dyor.com"
 
     // TODO(publish): numeric App Store id, available once the app exists in App Store Connect
     // (`setup-appstore-connect` skill).
@@ -57,7 +57,12 @@ object AppConfiguration {
     // Default false — anonymous auth is the easiest path to a working app (just Firebase +
     // Anonymous sign-in). Flip to true to add Google/Apple (see the enable-auth skill for the
     // extra config: GOOGLE_WEB_CLIENT_ID, iOS Info.plist client IDs, Sign In with Apple capability).
-    const val AUTH_SOCIAL_LOGIN_ENABLED = false
+    const val AUTH_SOCIAL_LOGIN_ENABLED = true
+
+    /**
+     * Admin user emails that are granted admin privileges (e.g. direct story editing, approving suggested edits).
+     */
+    val ADMIN_EMAILS = listOf("admin@indieplaybook.com", "mattdyor@gmail.com", "matt@kappmaker.com")
 
     /**
      * Whether the app has any **premium (paid/gated) features**.

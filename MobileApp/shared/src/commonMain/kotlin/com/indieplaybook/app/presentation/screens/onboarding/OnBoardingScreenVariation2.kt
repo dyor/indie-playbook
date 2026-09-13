@@ -3,31 +3,40 @@ package com.indieplaybook.app.presentation.screens.onboarding
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContent
 import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
@@ -56,6 +65,7 @@ fun OnBoardingScreenVariation2(
     modifier: Modifier = Modifier,
     uiState: OnBoardingUiState,
     onUiEvent: (OnBoardingUiEvent) -> Unit,
+    onNavigateToMethodology: () -> Unit = {},
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(
@@ -101,6 +111,7 @@ fun OnBoardingScreenVariation2(
                 val onBoardingScreenData = uiState.pages[pageIndex]
                 OnBoardingPager(
                     item = onBoardingScreenData,
+                    onNavigateToMethodology = onNavigateToMethodology,
                     modifier = Modifier.fillMaxWidth()
                         .padding(
                             top = AppTheme.spacing.largeSpacing,
@@ -135,11 +146,7 @@ fun OnBoardingScreenVariation2(
                 ),
                 contentAlignment = Alignment.Center,
             ) {
-                androidx.compose.animation.AnimatedVisibility(
-                    visible = isLastPage.not(),
-                    enter = fadeIn(),
-                    exit = fadeOut(),
-                ) {
+                if (!isLastPage) {
                     SkipAndContinueButton(
                         modifier = Modifier.fillMaxWidth(),
                         onClickContinue = {
@@ -158,13 +165,7 @@ fun OnBoardingScreenVariation2(
                             coroutineScope.launch { pagerState.animateScrollToPage(uiState.pages.lastIndex) }
                         },
                     )
-                }
-
-                androidx.compose.animation.AnimatedVisibility(
-                    visible = isLastPage,
-                    enter = fadeIn(),
-                    exit = fadeOut(),
-                ) {
+                } else {
                     AppButton(
                         modifier = Modifier.fillMaxWidth(),
                         text = stringResource(Res.string.btn_get_started),
@@ -180,7 +181,10 @@ fun OnBoardingScreenVariation2(
 private fun OnBoardingPager(
     modifier: Modifier = Modifier,
     item: OnBoardingScreenData,
+    onNavigateToMethodology: () -> Unit = {},
 ) {
+    val localUriHandler = LocalUriHandler.current
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -193,10 +197,88 @@ private fun OnBoardingPager(
 
         Text(
             text = stringResource(item.description),
-            style = AppTheme.typography.bodyExtraLarge,
+            style = AppTheme.typography.bodyLarge,
             color = AppTheme.colors.text.secondary,
             textAlign = TextAlign.Center,
         )
+
+        if (item.hasMethodologyLink) {
+            Spacer(modifier = Modifier.height(4.dp))
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .clickable { onNavigateToMethodology() },
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = AppTheme.colors.surfaceContainer,
+                ),
+                border = BorderStroke(1.dp, AppTheme.colors.primary.copy(alpha = 0.6f)),
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 13.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                ) {
+                    Text(
+                        text = "📐 More about the methodology",
+                        style = AppTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = AppTheme.colors.primary,
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = "➔",
+                        style = AppTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = AppTheme.colors.primary,
+                    )
+                }
+            }
+        }
+
+        if (!item.linkUrl.isNullOrBlank() && !item.linkText.isNullOrBlank()) {
+            Spacer(modifier = Modifier.height(4.dp))
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .clickable {
+                        try {
+                            localUriHandler.openUri(item.linkUrl)
+                        } catch (_: Exception) {}
+                    },
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = AppTheme.colors.surfaceContainer,
+                ),
+                border = BorderStroke(1.dp, AppTheme.colors.primary.copy(alpha = 0.5f)),
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(14.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                ) {
+                    Text(
+                        text = item.linkText,
+                        style = AppTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFF64B5F6),
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = "↗",
+                        style = AppTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF64B5F6),
+                    )
+                }
+            }
+        }
     }
 }
 

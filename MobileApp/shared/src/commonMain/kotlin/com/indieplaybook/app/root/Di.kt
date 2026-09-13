@@ -23,17 +23,21 @@ import com.indieplaybook.app.data.source.remote.apiservices.ai.ReplicateApiServi
 import com.indieplaybook.app.domain.model.credit.creditSystemConfig
 import com.indieplaybook.app.domain.usecase.AiGenerationProvider
 import com.indieplaybook.app.presentation.screens.account.AccountViewModel
+import com.indieplaybook.app.presentation.screens.admineditstory.AdminEditStoryViewModel
+import com.indieplaybook.app.presentation.screens.adminreviewsuggestions.AdminReviewSuggestionsViewModel
 import com.indieplaybook.app.presentation.screens.appstorydetail.AppStoryDetailViewModel
 import com.indieplaybook.app.presentation.screens.creditbalance.CreditBalanceViewModel
 import com.indieplaybook.app.presentation.screens.gallery.GalleryViewModel
 import com.indieplaybook.app.presentation.screens.generationresult.GenerationResultViewModel
 import com.indieplaybook.app.presentation.screens.home.HomeViewModel
 import com.indieplaybook.app.presentation.screens.homefeed.HomeFeedViewModel
+import com.indieplaybook.app.presentation.screens.methodology.MethodologyViewModel
 import com.indieplaybook.app.presentation.screens.onboarding.OnBoardingViewModel
 import com.indieplaybook.app.presentation.screens.paywall.PaywallViewModel
 import com.indieplaybook.app.presentation.screens.profile.ProfileViewModel
 import com.indieplaybook.app.presentation.screens.savedbookmarks.SavedBookmarksViewModel
 import com.indieplaybook.app.presentation.screens.subscriptions.SubscriptionsViewModel
+import com.indieplaybook.app.presentation.screens.suggestedits.SuggestEditsViewModel
 import com.indieplaybook.app.subscription.api.MockSubscriptionProvider
 import com.indieplaybook.app.subscription.api.NoOpSubscriptionProviderUi
 import com.indieplaybook.app.subscription.api.SubscriptionProvider
@@ -164,6 +168,10 @@ private val presentationModule = module {
     viewModelOf(::HomeFeedViewModel)
     viewModelOf(::AppStoryDetailViewModel)
     viewModelOf(::SavedBookmarksViewModel)
+    viewModelOf(::SuggestEditsViewModel)
+    viewModelOf(::AdminEditStoryViewModel)
+    viewModelOf(::AdminReviewSuggestionsViewModel)
+    viewModelOf(::MethodologyViewModel)
     // Add new view models below — generate_screen.sh inserts here.
 }
 

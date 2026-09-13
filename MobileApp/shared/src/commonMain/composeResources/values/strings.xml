@@ -3,14 +3,14 @@
     <string name="bottom_nav_label_profile">Profile</string>
     <string name="bottom_nav_label_gallery">Favorites</string>
 
-    <string name="title_onboarding_page_1">Discover Indie Success</string>
-    <string name="desc_onboarding_page_1">Learn the exact tech stacks, origin stories, and growth playbooks of the top independent cross-platform apps.</string>
+    <string name="title_onboarding_page_1">Top Cross-Platform Apps</string>
+    <string name="desc_onboarding_page_1">Discover the top independent mobile apps (based on downloads from the App Store) written in Cross-Platform frameworks: React Native, Flutter, and Kotlin Multiplatform (KMP).</string>
 
-    <string name="title_onboarding_page_2">Filter by Tech Stack</string>
-    <string name="desc_onboarding_page_2">Whether you build with Flutter, React Native, or Kotlin Multiplatform, find apps that share your stack.</string>
+    <string name="title_onboarding_page_2">Powered by AppFigures</string>
+    <string name="desc_onboarding_page_2">App download estimates and store ranking data are powered by AppFigures. A huge thank you to AppFigures for providing such a valuable dataset to the indie developer community!</string>
 
-    <string name="title_onboarding_page_3">Nominate Your App</string>
-    <string name="desc_onboarding_page_3">Built an indie app that hit 10K+ downloads? Join our community and nominate your app to be featured.</string>
+    <string name="title_onboarding_page_3">Growth Playbooks &amp; Community</string>
+    <string name="desc_onboarding_page_3">Explore real origin stories, growth playbooks, and monetization strategies. You can also suggest new apps or contribute edits to keep the directory thriving.</string>
 
     <string name="btn_get_started">Get Started</string>
     <string name="btn_restore_purchase">Restore Purchase</string>
@@ -47,6 +47,8 @@
     <string name="logout">Logout</string>
     <string name="help_and_support">Help &amp; Support</string>
     <string name="item_contact_support">Contact Support</string>
+    <string name="item_about_app">About Indie Playbook</string>
+    <string name="item_methodology">Dataset Methodology</string>
 
 
     <!-- Home Screen Strings -->

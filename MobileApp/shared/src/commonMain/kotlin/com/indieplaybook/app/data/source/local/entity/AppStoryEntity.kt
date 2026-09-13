@@ -25,7 +25,7 @@ data class AppStoryEntity(
     @ColumnInfo("release_date") val releaseDate: String? = null,
     @ColumnInfo("category") val category: String? = null,
 
-    // New fields from firestore
+    // Store & details fields
     @ColumnInfo("google_play_url") val googlePlayUrl: String? = null,
     @ColumnInfo("app_store_url") val appStoreUrl: String? = null,
     @ColumnInfo("google_play_reviews") val googlePlayReviews: String? = null,
@@ -41,15 +41,28 @@ data class AppStoryEntity(
     @ColumnInfo("app_store_privacy_policy") val appStorePrivacyPolicy: String? = null,
     @ColumnInfo("google_play_privacy_policy") val googlePlayPrivacyPolicy: String? = null,
     @ColumnInfo("app_website_url") val appWebsiteUrl: String? = null,
+    @ColumnInfo("store_presence") val storePresence: String? = null,
 )
+
+fun cleanPlaceholder(text: String?): String {
+    if (text == null) return ""
+    val trimmed = text.trim()
+    if (trimmed.startsWith("The origin story defines", ignoreCase = true) ||
+        trimmed.startsWith("The growh story tells", ignoreCase = true) ||
+        trimmed.startsWith("The growth story tells", ignoreCase = true)
+    ) {
+        return ""
+    }
+    return trimmed
+}
 
 fun AppStoryEntity.toModel(): AppStory = AppStory(
     id = id,
     name = name,
     oneLiner = oneLiner,
     techStack = techStack,
-    originStory = originStory,
-    growthPlaybook = growthPlaybook,
+    originStory = cleanPlaceholder(originStory),
+    growthPlaybook = cleanPlaceholder(growthPlaybook),
     iconUrl = iconUrl,
     isBookmarked = isBookmarked,
     downloads = downloads,
@@ -72,6 +85,7 @@ fun AppStoryEntity.toModel(): AppStory = AppStory(
     appStorePrivacyPolicy = appStorePrivacyPolicy,
     googlePlayPrivacyPolicy = googlePlayPrivacyPolicy,
     appWebsiteUrl = appWebsiteUrl,
+    storePresence = storePresence ?: if (!googlePlayUrl.isNullOrBlank() && !appStoreUrl.isNullOrBlank()) "Dual Store" else "App Store Only",
 )
 
 fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
@@ -103,4 +117,5 @@ fun AppStory.toEntity(): AppStoryEntity = AppStoryEntity(
     appStorePrivacyPolicy = appStorePrivacyPolicy,
     googlePlayPrivacyPolicy = googlePlayPrivacyPolicy,
     appWebsiteUrl = appWebsiteUrl,
+    storePresence = storePresence,
 )

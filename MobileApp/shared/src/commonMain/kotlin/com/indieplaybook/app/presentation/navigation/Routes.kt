@@ -73,4 +73,20 @@ data class AppStoryDetailScreenRoute(val id: String) : ScreenRoute
 @SerialName("SavedBookmarks")
 data object SavedBookmarksScreenRoute : TopLevelScreenRoute
 
+@Serializable
+@SerialName("SuggestEdits")
+data class SuggestEditsScreenRoute(val storyId: String) : ScreenRoute
+
+@Serializable
+@SerialName("AdminEditStory")
+data class AdminEditStoryScreenRoute(val storyId: String) : ScreenRoute
+
+@Serializable
+@SerialName("AdminReviewSuggestions")
+data object AdminReviewSuggestionsScreenRoute : ScreenRoute
+
+@Serializable
+@SerialName("Methodology")
+data object MethodologyScreenRoute : ScreenRoute
+
 // Add new routes below — generate_screen.sh inserts here.

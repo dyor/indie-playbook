@@ -33,6 +33,10 @@ import com.indieplaybook.app.generated.resources.bottom_nav_label_home
 import com.indieplaybook.app.generated.resources.bottom_nav_label_profile
 import com.indieplaybook.app.presentation.screens.account.AccountScreen
 import com.indieplaybook.app.presentation.screens.account.AccountViewModel
+import com.indieplaybook.app.presentation.screens.admineditstory.AdminEditStoryScreen
+import com.indieplaybook.app.presentation.screens.admineditstory.AdminEditStoryViewModel
+import com.indieplaybook.app.presentation.screens.adminreviewsuggestions.AdminReviewSuggestionsScreen
+import com.indieplaybook.app.presentation.screens.adminreviewsuggestions.AdminReviewSuggestionsViewModel
 import com.indieplaybook.app.presentation.screens.appstorydetail.AppStoryDetailScreen
 import com.indieplaybook.app.presentation.screens.appstorydetail.AppStoryDetailViewModel
 import com.indieplaybook.app.presentation.screens.creditbalance.CreditBalanceScreen
@@ -46,6 +50,8 @@ import com.indieplaybook.app.presentation.screens.home.HomeScreen
 import com.indieplaybook.app.presentation.screens.home.HomeViewModel
 import com.indieplaybook.app.presentation.screens.homefeed.HomeFeedScreen
 import com.indieplaybook.app.presentation.screens.homefeed.HomeFeedViewModel
+import com.indieplaybook.app.presentation.screens.methodology.MethodologyScreen
+import com.indieplaybook.app.presentation.screens.methodology.MethodologyViewModel
 import com.indieplaybook.app.presentation.screens.onboarding.OnBoardingScreen
 import com.indieplaybook.app.presentation.screens.onboarding.OnBoardingScreenStyle
 import com.indieplaybook.app.presentation.screens.onboarding.OnBoardingViewModel
@@ -59,6 +65,8 @@ import com.indieplaybook.app.presentation.screens.savedbookmarks.SavedBookmarksV
 import com.indieplaybook.app.presentation.screens.signin.SignInScreen
 import com.indieplaybook.app.presentation.screens.subscriptions.SubscriptionsScreen
 import com.indieplaybook.app.presentation.screens.subscriptions.SubscriptionsViewModel
+import com.indieplaybook.app.presentation.screens.suggestedits.SuggestEditsScreen
+import com.indieplaybook.app.presentation.screens.suggestedits.SuggestEditsViewModel
 import com.indieplaybook.app.root.AppConfiguration
 import com.indieplaybook.app.util.Constants
 import com.indieplaybook.app.util.extensions.isKeyboardOpen
@@ -173,6 +181,7 @@ private fun EntryProviderScope<ScreenRoute>.screens(navigator: Navigator) {
             onNavigateSignIn = { navigator.navigate(SignInScreenRoute()) },
             onNavigateProfile = { navigator.navigate(ProfileScreenRoute) },
             onNavigateSubscriptions = { navigator.navigate(SubscriptionsScreenRoute) },
+            onNavigateToAdminReviewSuggestions = { navigator.navigate(AdminReviewSuggestionsScreenRoute) },
         )
     }
 
@@ -185,6 +194,9 @@ private fun EntryProviderScope<ScreenRoute>.screens(navigator: Navigator) {
             viewModel = viewModel,
             onOnBoardingFinished = { _ ->
                 navigator.set(HomeFeedScreenRoute)
+            },
+            onNavigateToMethodology = {
+                navigator.navigate(MethodologyScreenRoute)
             },
         )
     }
@@ -216,7 +228,10 @@ private fun EntryProviderScope<ScreenRoute>.screens(navigator: Navigator) {
     }
 
     entry<HelpAndSupportScreenRoute> {
-        HelpAndSupportScreen(onNavigateBack = { navigator.goBack() })
+        HelpAndSupportScreen(
+            onNavigateBack = { navigator.goBack() },
+            onNavigateToMethodology = { navigator.navigate(MethodologyScreenRoute) },
+        )
     }
 
     entry<CreditBalanceScreenRoute> {
@@ -273,6 +288,8 @@ private fun EntryProviderScope<ScreenRoute>.screens(navigator: Navigator) {
         HomeFeedScreen(
             viewModel = viewModel,
             onNavigateToDetail = { id -> navigator.navigate(AppStoryDetailScreenRoute(id = id)) },
+            onNavigateToSuggestNewApp = { navigator.navigate(SuggestEditsScreenRoute(storyId = "new")) },
+            onNavigateToMethodology = { navigator.navigate(MethodologyScreenRoute) },
         )
     }
 
@@ -289,6 +306,44 @@ private fun EntryProviderScope<ScreenRoute>.screens(navigator: Navigator) {
             parameters = { parametersOf(key.id) },
         )
         AppStoryDetailScreen(
+            viewModel = viewModel,
+            onNavigateBack = { navigator.goBack() },
+            onNavigateToSuggestEdits = { storyId -> navigator.navigate(SuggestEditsScreenRoute(storyId = storyId)) },
+            onNavigateToAdminEdit = { storyId -> navigator.navigate(AdminEditStoryScreenRoute(storyId = storyId)) },
+        )
+    }
+
+    entry<SuggestEditsScreenRoute> { key ->
+        val viewModel = koinViewModel<SuggestEditsViewModel>(
+            parameters = { parametersOf(key.storyId) },
+        )
+        SuggestEditsScreen(
+            viewModel = viewModel,
+            onNavigateBack = { navigator.goBack() },
+        )
+    }
+
+    entry<AdminEditStoryScreenRoute> { key ->
+        val viewModel = koinViewModel<AdminEditStoryViewModel>(
+            parameters = { parametersOf(key.storyId) },
+        )
+        AdminEditStoryScreen(
+            viewModel = viewModel,
+            onNavigateBack = { navigator.goBack() },
+        )
+    }
+
+    entry<AdminReviewSuggestionsScreenRoute> {
+        val viewModel = koinViewModel<AdminReviewSuggestionsViewModel>()
+        AdminReviewSuggestionsScreen(
+            viewModel = viewModel,
+            onNavigateBack = { navigator.goBack() },
+        )
+    }
+
+    entry<MethodologyScreenRoute> {
+        val viewModel = koinViewModel<MethodologyViewModel>()
+        MethodologyScreen(
             viewModel = viewModel,
             onNavigateBack = { navigator.goBack() },
         )

@@ -3,6 +3,7 @@ package com.indieplaybook.app.presentation.components
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
+import com.indieplaybook.app.common.BuildConfig
 import com.indieplaybook.app.designsystem.components.AppleSignInButton
 import com.indieplaybook.app.designsystem.components.GoogleSignInButton
 import com.indieplaybook.app.designsystem.generated.resources.UiRes
@@ -36,12 +37,32 @@ actual fun AuthUiButton(
                     firebaseUserResult.handleFirebaseAuthResult(onResult)
                 },
             ) {
-                LaunchedEffect(Unit) { if (autoClickEnabled) this@GoogleButtonUiContainerFirebase.onClick() }
+                LaunchedEffect(Unit) {
+                    if (autoClickEnabled && BuildConfig.GOOGLE_WEB_CLIENT_ID.isNotBlank()) {
+                        this@GoogleButtonUiContainerFirebase.onClick()
+                    }
+                }
                 GoogleSignInButton(
                     height = height,
                     textRes = if (linkAccount) UiRes.string.btn_continue_with_google else UiRes.string.btn_sign_in_with_google,
                     shape = shape,
-                ) { this.onClick() }
+                ) {
+                    if (BuildConfig.GOOGLE_WEB_CLIENT_ID.isBlank()) {
+                        AppLogger.e("GOOGLE_WEB_CLIENT_ID is empty in local.properties")
+                        onResult(
+                            Result.failure(
+                                IllegalStateException("Google Sign-In is not configured yet. Please set GOOGLE_WEB_CLIENT_ID in local.properties, or tap 'Continue as guest'."),
+                            ),
+                        )
+                    } else {
+                        try {
+                            this.onClick()
+                        } catch (e: Throwable) {
+                            AppLogger.e("Google Sign-In failed: ${e.message}", e)
+                            onResult(Result.failure(e))
+                        }
+                    }
+                }
             }
         }
 

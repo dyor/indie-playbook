@@ -15,6 +15,7 @@
 		A631C8B22C8DE94A0075EE70 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = A631C8B12C8DE94A0075EE70 /* FirebaseAppCheck */; };
 		A631C8B42C8DE94A0075EE70 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A631C8B32C8DE94A0075EE70 /* FirebaseAuth */; };
 		A631C8B62C8DE94A0075EE70 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = A631C8B52C8DE94A0075EE70 /* FirebaseCrashlytics */; };
+		A631C8D22C8DE94A0075EE70 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A631C8D12C8DE94A0075EE70 /* FirebaseFirestore */; };
 		A631C8BA2C8DEB220075EE70 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A631C8B92C8DEB220075EE70 /* FirebaseMessaging */; };
 		A631C8BC2C8DEBD80075EE70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A631C8BB2C8DEBD70075EE70 /* GoogleService-Info.plist */; };
 		A64B10C82D73E71E000997FB /* SwiftLibDependencyFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64B10C72D73E71E000997FB /* SwiftLibDependencyFactoryImpl.swift */; };
@@ -69,6 +70,7 @@
 				A631C8B42C8DE94A0075EE70 /* FirebaseAuth in Frameworks */,
 				A631C8AB2C8DE8F10075EE70 /* GoogleSignInSwift in Frameworks */,
 				A631C8B62C8DE94A0075EE70 /* FirebaseCrashlytics in Frameworks */,
+				A631C8D22C8DE94A0075EE70 /* FirebaseFirestore in Frameworks */,
 				A631C8AE2C8DE94A0075EE70 /* FirebaseAnalytics in Frameworks */,
 				A631C8B22C8DE94A0075EE70 /* FirebaseAppCheck in Frameworks */,
 				A64B10CC2D73E7D7000997FB /* FirebaseRemoteConfig in Frameworks */,
@@ -204,6 +206,7 @@
 				A631C8B12C8DE94A0075EE70 /* FirebaseAppCheck */,
 				A631C8B32C8DE94A0075EE70 /* FirebaseAuth */,
 				A631C8B52C8DE94A0075EE70 /* FirebaseCrashlytics */,
+				A631C8D12C8DE94A0075EE70 /* FirebaseFirestore */,
 				A631C8B92C8DEB220075EE70 /* FirebaseMessaging */,
 				A64B10CB2D73E7D7000997FB /* FirebaseRemoteConfig */,
 				45887485B315FAB0B98BA672 /* KotlinMultiplatformLinkedPackage */,
@@ -302,7 +305,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\nunset ANDROID_USER_HOME\nunset ANDROID_PREFS_ROOT\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\nunset ANDROID_USER_HOME\nunset ANDROID_PREFS_ROOT\n./gradlew :shared:embedAndSignAppleFrameworkForXcode";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -454,6 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 56Q4PHKXUA;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -489,6 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 56Q4PHKXUA;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -612,6 +617,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A631C8AC2C8DE94A0075EE70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		A631C8D12C8DE94A0075EE70 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A631C8AC2C8DE94A0075EE70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		A631C8B92C8DEB220075EE70 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;

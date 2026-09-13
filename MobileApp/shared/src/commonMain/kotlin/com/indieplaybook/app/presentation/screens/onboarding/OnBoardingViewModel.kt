@@ -3,6 +3,7 @@ package com.indieplaybook.app.presentation.screens.onboarding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.indieplaybook.app.data.source.preferences.UserPreferences
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,6 +36,7 @@ class OnBoardingViewModel(
         if (userPreferences.getBoolean(UserPreferences.KEY_IS_ONBOARD_SHOWN)) {
             _uiState.update { it.copy(isOnBoardingFinished = true, isNewUser = false) }
         } else {
+            delay(1200)
             _uiState.update { it.copy(isLoading = false) }
         }
     }

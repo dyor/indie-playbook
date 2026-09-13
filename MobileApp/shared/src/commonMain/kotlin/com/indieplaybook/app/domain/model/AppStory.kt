@@ -29,4 +29,5 @@ data class AppStory(
     val appStorePrivacyPolicy: String? = null,
     val googlePlayPrivacyPolicy: String? = null,
     val appWebsiteUrl: String? = null,
+    val storePresence: String? = null,
 )

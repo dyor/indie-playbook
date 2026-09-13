@@ -8,4 +8,5 @@ data class User(
     val photoUrl: String? = null,
     val hasPremiumAccess: Boolean = false,
     val isAnonymous: Boolean = false,
+    val isAdmin: Boolean = false,
 )

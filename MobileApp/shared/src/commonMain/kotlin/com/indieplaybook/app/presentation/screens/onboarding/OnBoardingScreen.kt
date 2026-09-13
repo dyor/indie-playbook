@@ -32,6 +32,7 @@ fun OnBoardingScreen(
     style: OnBoardingScreenStyle,
     viewModel: OnBoardingViewModel,
     onOnBoardingFinished: (isNewUser: Boolean) -> Unit,
+    onNavigateToMethodology: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -47,6 +48,7 @@ fun OnBoardingScreen(
         style = style,
         uiState = uiState,
         onUiEvent = viewModel::onUiEvent,
+        onNavigateToMethodology = onNavigateToMethodology,
     )
 }
 
@@ -61,6 +63,7 @@ fun OnBoardingScreen(
     style: OnBoardingScreenStyle,
     uiState: OnBoardingUiState,
     onUiEvent: (OnBoardingUiEvent) -> Unit,
+    onNavigateToMethodology: () -> Unit = {},
 ) {
     Crossfade(
         targetState = uiState.isLoading,
@@ -77,6 +80,7 @@ fun OnBoardingScreen(
                         modifier = Modifier.fillMaxSize(),
                         uiState = uiState,
                         onUiEvent = onUiEvent,
+                        onNavigateToMethodology = onNavigateToMethodology,
                     )
                 }
 
@@ -85,6 +89,7 @@ fun OnBoardingScreen(
                         modifier = Modifier.fillMaxSize(),
                         uiState = uiState,
                         onUiEvent = onUiEvent,
+                        onNavigateToMethodology = onNavigateToMethodology,
                     )
                 }
             }
