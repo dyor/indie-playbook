@@ -1,0 +1,37 @@
+<journey name="Confirm Favorite Story in Saved Bookmarks">
+   <description>
+      Verifies that after favoriting an app story (e.g. Xperiencia), switching to the Saved/Bookmarks tab displays the favorited story in the list.
+   </description>
+   <actions>
+     <action>
+       Verify that the app is on the "Discover" feed
+     </action>
+     <action>
+       Tap the second tab in the bottom navigation bar to open Saved Bookmarks
+     </action>
+     <action>
+       Verify that the "Saved Bookmarks" screen is displayed
+     </action>
+     <action>
+       Verify that the favorited story "Xperiencia" is displayed in the saved list
+     </action>
+     <action>
+       Tap on the "Xperiencia" card in the saved list
+     </action>
+     <action>
+       Verify that the story detail screen opens for "Xperiencia"
+     </action>
+     <action>
+       Tap the back button
+     </action>
+     <action>
+       Verify that the app returns to the "Saved Bookmarks" screen
+     </action>
+     <action>
+       Tap the first tab in the bottom navigation bar to return to "Discover"
+     </action>
+     <action>
+       Verify that the app is back on the "Discover" feed
+     </action>
+   </actions>
+</journey>

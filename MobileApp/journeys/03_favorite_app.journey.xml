@@ -1,0 +1,31 @@
+<journey name="Favorite an App Story">
+   <description>
+      Verifies that a user can bookmark / favorite an app story either directly from the feed or from the story detail page, and toggles the bookmark icon state.
+   </description>
+   <actions>
+     <action>
+       Verify that the app is on the "Discover" feed
+     </action>
+     <action>
+       Scroll until the app story "Xperiencia" is visible
+     </action>
+     <action>
+       Tap on the "Xperiencia" story card
+     </action>
+     <action>
+       Verify that the story detail screen for "Xperiencia" is displayed
+     </action>
+     <action>
+       Tap the bookmark icon in the top toolbar to favorite the app
+     </action>
+     <action>
+       Verify that the bookmark icon indicates favorited state ("★")
+     </action>
+     <action>
+       Tap the back button to return to the feed
+     </action>
+     <action>
+       Verify that the bookmark icon on the "Xperiencia" feed card indicates favorited state ("★")
+     </action>
+   </actions>
+</journey>

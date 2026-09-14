@@ -1,0 +1,34 @@
+<journey name="Select Story Item Details">
+   <description>
+      Verifies that a user can find and tap a specific app story (such as Xperiencia) from the feed and view its detailed sections (Origin Story, Growth Playbook, store links).
+   </description>
+   <actions>
+     <action>
+       Verify that the app is on the "Discover" feed
+     </action>
+     <action>
+       Scroll until the app story "Xperiencia" is visible
+     </action>
+     <action>
+       Tap on the "Xperiencia" story card
+     </action>
+     <action>
+       Verify that the story detail screen opens with title "Xperiencia"
+     </action>
+     <action>
+       Verify that the "Store Description" section is visible
+     </action>
+     <action>
+       Scroll down until the "✏️ Suggest Edits" button is visible
+     </action>
+     <action>
+       Verify that the "✏️ Suggest Edits" button is visible
+     </action>
+     <action>
+       Tap the back button
+     </action>
+     <action>
+       Verify that the app returns to the "Discover" feed
+     </action>
+   </actions>
+</journey>

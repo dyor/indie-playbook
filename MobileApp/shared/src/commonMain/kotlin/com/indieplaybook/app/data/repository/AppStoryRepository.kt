@@ -1,6 +1,7 @@
 package com.indieplaybook.app.data.repository
 
 import com.indieplaybook.app.data.source.local.dao.AppStoryDao
+import com.indieplaybook.app.data.source.local.defaultSeedStories
 import com.indieplaybook.app.data.source.local.entity.AppStoryEntity
 import com.indieplaybook.app.data.source.local.entity.cleanPlaceholder
 import com.indieplaybook.app.data.source.local.entity.toEntity
@@ -149,6 +150,17 @@ class AppStoryRepository(
     }
 
     suspend fun seedInitialDataIfEmpty() {
+        // Fast local seed if database is empty on any platform (iOS/Android/Desktop)
+        try {
+            val existing = appStoryDao.getAll()
+            if (existing.isEmpty()) {
+                appStoryDao.insertAll(defaultSeedStories)
+            }
+        } catch (e: Exception) {
+            AppLogger.e("Failed to insert default seed stories", e, "AppStoryRepository")
+        }
+
+        // Remote sync from Firestore
         try {
             val collection = Firebase.firestore.collection("app_stories")
             val snapshot = collection.get()

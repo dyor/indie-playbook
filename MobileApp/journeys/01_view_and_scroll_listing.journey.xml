@@ -1,0 +1,34 @@
+<journey name="View and Scroll Stories Listing">
+   <description>
+      Verifies that the user lands on the Discover feed, views cross-platform stories, filters by tech stack, and can scroll down the list of stories.
+   </description>
+   <actions>
+     <action>
+       Verify that the app displays the "Discover" feed
+     </action>
+     <action>
+       Verify that the tech stack filter chips "All", "KMP", "Flutter", and "React Native" are visible
+     </action>
+     <action>
+       Verify that app story cards are visible on screen
+     </action>
+     <action>
+       Swipe up to scroll down through the list of app stories
+     </action>
+     <action>
+       Verify that new app story cards are displayed after scrolling
+     </action>
+     <action>
+       Tap the "Flutter" filter chip
+     </action>
+     <action>
+       Verify that only Flutter stories are displayed
+     </action>
+     <action>
+       Tap the "All" filter chip
+     </action>
+     <action>
+       Verify that all stories are displayed
+     </action>
+   </actions>
+</journey>

@@ -1,0 +1,46 @@
+<journey name="Suggest Story Edit and Submit">
+   <description>
+      Verifies that a user can open the Suggest Edits screen for a story, modify fields (e.g. Origin Story or Notes), submit the edit suggestion, and receive positive submission confirmation.
+   </description>
+   <actions>
+     <action>
+       Verify that the app is on the "Discover" feed
+     </action>
+     <action>
+       Scroll until the app story "Xperiencia" is visible
+     </action>
+     <action>
+       Tap on the "Xperiencia" story card
+     </action>
+     <action>
+       Verify that the story detail screen for "Xperiencia" is displayed
+     </action>
+     <action>
+       Scroll down and tap the "✏️ Suggest Edits" button
+     </action>
+     <action>
+       Verify that the "Suggest Edits" screen is displayed with prefilled fields
+     </action>
+     <action>
+       Scroll down to the "Note to Reviewer (Optional)" field
+     </action>
+     <action>
+       Type "Updated revenue milestone and verified Play Store listing" into the "Note to Reviewer (Optional)" field
+     </action>
+     <action>
+       Tap the "Submit Suggestion" button
+     </action>
+     <action>
+       Verify that the confirmation screen displays "Suggestion Submitted! 🎉"
+     </action>
+     <action>
+       Verify that the message "Thank you for contributing. An admin will review your suggested edits shortly." is visible
+     </action>
+     <action>
+       Tap the "Back to Story" button
+     </action>
+     <action>
+       Verify that the app returns to the "Xperiencia" story detail screen
+     </action>
+   </actions>
+</journey>

@@ -26,9 +26,13 @@ android {
             libs.versions.android.compileSdk
                 .get()
                 .toInt()
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            debugSymbolLevel = "FULL"
+        }
     }
 
     val keystorePropertiesFile =
@@ -65,6 +69,10 @@ android {
                 "proguard-rules.pro",
             )
             signingConfig = signingConfigs.getByName(if (isSigningKeyExists) "release" else "debug")
+
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
 
             resValue(
                 "string",
