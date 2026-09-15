@@ -49,6 +49,9 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.indieplaybook.app.designsystem.components.AppButton
+import com.indieplaybook.app.designsystem.components.LoadingProgress
+import com.indieplaybook.app.designsystem.components.LoadingProgressMode
 import com.indieplaybook.app.designsystem.components.ScreenWithToolbar
 import com.indieplaybook.app.designsystem.generated.resources.UiRes
 import com.indieplaybook.app.designsystem.generated.resources.ic_tech_flutter
@@ -172,30 +175,78 @@ fun HomeFeedScreen(
                 }
             }
 
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(
-                    horizontal = AppTheme.spacing.outerSpacing,
-                    vertical = AppTheme.spacing.groupedVerticalElementSpacing,
-                ),
-                verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing),
-            ) {
-                items(uiState.stories, key = { it.id }) { story ->
-                    AppStoryCard(
-                        story = story,
-                        onClick = { onNavigateToDetail(story.id) },
-                        onBookmarkClick = { onUiEvent(HomeFeedUiEvent.OnBookmarkClicked(story)) },
+            if (uiState.isLoading && uiState.stories.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    LoadingProgress(
+                        mode = LoadingProgressMode.FULLSCREEN,
                     )
                 }
-
-                item {
-                    SuggestNewAppCard(
-                        onClick = onNavigateToSuggestNewApp,
-                    )
+            } else if (uiState.stories.isEmpty() && !uiState.errorMessage.isNullOrBlank()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(AppTheme.spacing.outerSpacing),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.surfaceContainer),
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(24.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(12.dp),
+                        ) {
+                            Text(
+                                text = "⚠️ ${uiState.errorMessage}",
+                                style = AppTheme.typography.h6,
+                                fontWeight = FontWeight.Bold,
+                                color = AppTheme.colors.status.error,
+                            )
+                            Text(
+                                text = "Please check your internet connection and try again.",
+                                style = AppTheme.typography.bodyMedium,
+                                color = AppTheme.colors.text.secondary,
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            AppButton(
+                                text = "Retry",
+                                onClick = { onUiEvent(HomeFeedUiEvent.OnRetryClicked) },
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                        }
+                    }
                 }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(
+                        horizontal = AppTheme.spacing.outerSpacing,
+                        vertical = AppTheme.spacing.groupedVerticalElementSpacing,
+                    ),
+                    verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing),
+                ) {
+                    items(uiState.stories, key = { it.id }) { story ->
+                        AppStoryCard(
+                            story = story,
+                            onClick = { onNavigateToDetail(story.id) },
+                            onBookmarkClick = { onUiEvent(HomeFeedUiEvent.OnBookmarkClicked(story)) },
+                        )
+                    }
 
-                item {
-                    Spacer(modifier = Modifier.height(16.dp))
+                    item {
+                        SuggestNewAppCard(
+                            onClick = onNavigateToSuggestNewApp,
+                        )
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
                 }
             }
         }
