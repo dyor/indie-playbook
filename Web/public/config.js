@@ -6,7 +6,7 @@ const CONFIG = {
     DEVELOPER_OR_COMPANY_NAME: "Indie Playbook",
     WEBSITE_TITLE: "Indie Playbook — Build, Launch & Grow Your Mobile Apps",
     WEBSITE_DESCRIPTION: "Indie Playbook is the ultimate companion for indie makers and developers to turn app ideas into successful, revenue-generating mobile apps.",
-    CONTACT_EMAIL: "support@example.com",
+    CONTACT_EMAIL: "admin@dyor.com",
     
     // Store Links (leave empty string "" if not yet published to hide badge)
     PLAYSTORE_URL: "https://play.google.com/store/apps",
