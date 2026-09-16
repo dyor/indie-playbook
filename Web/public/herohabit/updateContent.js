@@ -32,16 +32,16 @@ function loadConfigAndUpdateContent() {
 
     // Set app store and play store links
     document.querySelectorAll(".app-store-link").forEach(function(element) {
-        if (CONFIG && CONFIG.APPSTORE_URL && CONFIG.APPSTORE_URL.trim() !== "") { 
+        if (CONFIG && CONFIG.APPSTORE_URL && CONFIG.APPSTORE_URL.trim() !== "") {
             element.href = CONFIG.APPSTORE_URL;
-            element.style.display = 'inline-block'; 
+            element.style.display = 'inline-block';
         }
     });
 
     document.querySelectorAll(".play-store-link").forEach(function(element) {
-        if (CONFIG && CONFIG.PLAYSTORE_URL && CONFIG.PLAYSTORE_URL.trim() !== "") { 
+        if (CONFIG && CONFIG.PLAYSTORE_URL && CONFIG.PLAYSTORE_URL.trim() !== "") {
             element.href = CONFIG.PLAYSTORE_URL;
-            element.style.display = 'inline-block'; 
+            element.style.display = 'inline-block';
         }
     });
 
