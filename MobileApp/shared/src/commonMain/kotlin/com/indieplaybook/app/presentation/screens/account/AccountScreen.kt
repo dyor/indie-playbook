@@ -130,7 +130,7 @@ fun AccountScreen(
                 )
             }
 
-            if (AppConfiguration.AUTH_SOCIAL_LOGIN_ENABLED || uiState.user?.id?.isNotEmpty() == true) {
+            if (AppConfiguration.AUTH_SOCIAL_LOGIN_ENABLED) {
                 ProfileInfoBox(user = uiState.user, onClick = {
                     if (uiState.user == null) {
                         onUiEvent(AccountUiEvent.OnClickSignIn)

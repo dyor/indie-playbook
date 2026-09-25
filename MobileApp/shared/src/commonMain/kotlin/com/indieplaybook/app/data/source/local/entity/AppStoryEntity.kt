@@ -44,30 +44,43 @@ data class AppStoryEntity(
     @ColumnInfo("store_presence") val storePresence: String? = null,
 )
 
+fun unescapeHtml(text: String?): String {
+    if (text == null) return ""
+    return text
+        .replace("&#39;", "'")
+        .replace("&apos;", "'")
+        .replace("&amp;", "&")
+        .replace("&quot;", "\"")
+        .replace("&lt;", "<")
+        .replace("&gt;", ">")
+        .replace("&nbsp;", " ")
+        .trim()
+}
+
 fun cleanPlaceholder(text: String?): String {
     if (text == null) return ""
-    val trimmed = text.trim()
-    if (trimmed.startsWith("The origin story defines", ignoreCase = true) ||
-        trimmed.startsWith("The growh story tells", ignoreCase = true) ||
-        trimmed.startsWith("The growth story tells", ignoreCase = true)
+    val cleaned = unescapeHtml(text)
+    if (cleaned.startsWith("The origin story defines", ignoreCase = true) ||
+        cleaned.startsWith("The growh story tells", ignoreCase = true) ||
+        cleaned.startsWith("The growth story tells", ignoreCase = true)
     ) {
         return ""
     }
-    return trimmed
+    return cleaned
 }
 
 fun AppStoryEntity.toModel(): AppStory = AppStory(
     id = id,
-    name = name,
-    oneLiner = oneLiner,
-    techStack = techStack,
+    name = unescapeHtml(name),
+    oneLiner = unescapeHtml(oneLiner),
+    techStack = unescapeHtml(techStack),
     originStory = cleanPlaceholder(originStory),
     growthPlaybook = cleanPlaceholder(growthPlaybook),
     iconUrl = iconUrl,
     isBookmarked = isBookmarked,
     downloads = downloads,
     revenue = revenue,
-    publisher = publisher,
+    publisher = unescapeHtml(publisher),
     releaseDate = releaseDate,
     category = category,
     googlePlayUrl = googlePlayUrl,

@@ -38,11 +38,13 @@ object TextDiff {
                     DiffType.UNCHANGED -> {
                         append(diff.text)
                     }
+
                     DiffType.DELETED -> {
                         withStyle(SpanStyle(textDecoration = TextDecoration.LineThrough)) {
                             append(diff.text)
                         }
                     }
+
                     DiffType.INSERTED -> {
                         withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
                             append(diff.text)

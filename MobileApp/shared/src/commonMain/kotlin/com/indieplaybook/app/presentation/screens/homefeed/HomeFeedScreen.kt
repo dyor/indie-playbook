@@ -49,6 +49,9 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.indieplaybook.app.designsystem.components.AppButton
+import com.indieplaybook.app.designsystem.components.LoadingProgress
+import com.indieplaybook.app.designsystem.components.LoadingProgressMode
 import com.indieplaybook.app.designsystem.components.ScreenWithToolbar
 import com.indieplaybook.app.designsystem.generated.resources.UiRes
 import com.indieplaybook.app.designsystem.generated.resources.ic_tech_flutter
@@ -172,30 +175,78 @@ fun HomeFeedScreen(
                 }
             }
 
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(
-                    horizontal = AppTheme.spacing.outerSpacing,
-                    vertical = AppTheme.spacing.groupedVerticalElementSpacing,
-                ),
-                verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing),
-            ) {
-                items(uiState.stories, key = { it.id }) { story ->
-                    AppStoryCard(
-                        story = story,
-                        onClick = { onNavigateToDetail(story.id) },
-                        onBookmarkClick = { onUiEvent(HomeFeedUiEvent.OnBookmarkClicked(story)) },
+            if (uiState.isLoading && uiState.stories.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    LoadingProgress(
+                        mode = LoadingProgressMode.FULLSCREEN,
                     )
                 }
-
-                item {
-                    SuggestNewAppCard(
-                        onClick = onNavigateToSuggestNewApp,
-                    )
+            } else if (uiState.stories.isEmpty() && !uiState.errorMessage.isNullOrBlank()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(AppTheme.spacing.outerSpacing),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.surfaceContainer),
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(24.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(12.dp),
+                        ) {
+                            Text(
+                                text = "⚠️ ${uiState.errorMessage}",
+                                style = AppTheme.typography.h6,
+                                fontWeight = FontWeight.Bold,
+                                color = AppTheme.colors.status.error,
+                            )
+                            Text(
+                                text = "Please check your internet connection and try again.",
+                                style = AppTheme.typography.bodyMedium,
+                                color = AppTheme.colors.text.secondary,
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            AppButton(
+                                text = "Retry",
+                                onClick = { onUiEvent(HomeFeedUiEvent.OnRetryClicked) },
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                        }
+                    }
                 }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(
+                        horizontal = AppTheme.spacing.outerSpacing,
+                        vertical = AppTheme.spacing.groupedVerticalElementSpacing,
+                    ),
+                    verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.sectionSpacing),
+                ) {
+                    items(uiState.stories, key = { it.id }) { story ->
+                        AppStoryCard(
+                            story = story,
+                            onClick = { onNavigateToDetail(story.id) },
+                            onBookmarkClick = { onUiEvent(HomeFeedUiEvent.OnBookmarkClicked(story)) },
+                        )
+                    }
 
-                item {
-                    Spacer(modifier = Modifier.height(16.dp))
+                    item {
+                        SuggestNewAppCard(
+                            onClick = onNavigateToSuggestNewApp,
+                        )
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
                 }
             }
         }
@@ -737,32 +788,38 @@ private fun HomeFeedStoreScreenshot_en() {
             uiState = HomeFeedUiState(
                 stories = listOf(
                     AppStory(
-                        id = "1",
-                        name = "Flighty",
-                        oneLiner = "Live flight tracking app built with Swift and Kotlin Multiplatform",
-                        category = "Travel",
-                        techStack = "KMP",
-                        iconUrl = "",
-                        isBookmarked = true,
-                        downloads = "5M+",
-                        revenue = "$10M+ ARR",
-                        originStory = "Started by passionate travelers wanting beautiful live tracking.",
-                        growthPlaybook = "Mastered Live Activities and App Store editorial featuring.",
-                        storePresence = "Dual Store",
-                    ),
-                    AppStory(
-                        id = "2",
-                        name = "Capacities",
-                        oneLiner = "A studio for your mind — networked note-taking app",
-                        category = "Productivity",
-                        techStack = "Flutter",
-                        iconUrl = "",
+                        id = "338283707820",
+                        name = "BetterSpeak: AI Language Tutor",
+                        oneLiner = "Your AI Tutor for Language Speaking & Conversation Practice",
+                        category = "Education",
+                        techStack = "React Native",
+                        iconUrl = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e6/af/e1/e6afe152-31e8-6643-2a3f-23be760eaae1/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
                         isBookmarked = false,
                         downloads = "1M+",
-                        revenue = "$2M+ ARR",
-                        originStory = "Built to rethink personal knowledge management.",
-                        growthPlaybook = "Built in public with strong community advocacy.",
+                        revenue = "$5M+ ARR",
+                        publisher = "HUBX",
+                        releaseDate = "2025-08-08",
+                        originStory = "Created by HUBX after observing that traditional language apps focus almost exclusively on vocabulary drills rather than spoken conversation confidence.",
+                        growthPlaybook = "Grew through paid social acquisition and micro-influencer demonstrations showcasing real-time AI speech correction.",
                         storePresence = "Dual Store",
+                        googlePlayUrl = "https://play.google.com/store/apps/details?id=hubx.speak.now",
+                        appStoreUrl = "https://apps.apple.com/us/app/betterspeak-ai-language-tutor/id6740192624",
+                    ),
+                    AppStory(
+                        id = "338283707821",
+                        name = "Calorie Counter: Kalee",
+                        oneLiner = "Transform your health journey with Kalee's AI-powered calorie counter",
+                        category = "Health & Fitness",
+                        techStack = "Flutter",
+                        iconUrl = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e1/9f/ee/e19fee21-eb33-5c2a-dc8d-19417ae4179b/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+                        isBookmarked = false,
+                        downloads = "10K+",
+                        publisher = "AHMED ALGHAMDI",
+                        releaseDate = "2025-08-30",
+                        originStory = "Built with a charming pixel art interface to make habit formation enjoyable.",
+                        growthPlaybook = "Grew via organic social media and App Store optimization.",
+                        storePresence = "App Store Only",
+                        appStoreUrl = "https://apps.apple.com/us/app/calorie-counter-kalee/id6742080345",
                     ),
                 ),
             ),

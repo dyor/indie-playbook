@@ -1,71 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 — Page Not Found</title>
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .notfound-container {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 1.5rem;
-        }
-        .notfound-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 3.5rem 2.5rem;
-            max-width: 520px;
-            box-shadow: var(--card-shadow);
-        }
-        .notfound-code {
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-        .notfound-btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            background: var(--primary);
-            color: #FFFFFF;
-            padding: 0.75rem 1.75rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-        }
-        .notfound-btn:hover {
-            background: var(--primary-hover);
-        }
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found</title>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px 16px; border-radius: 3px; }
+      #message h3 { color: #888; font-weight: normal; font-size: 16px; margin: 16px 0 12px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
     </style>
-</head>
-<body>
-    <header class="site-header">
-        <div class="nav-container">
-            <a href="index.html" class="brand-link">
-                <img src="images/logo.png" alt="Logo" class="brand-logo">
-                <span class="app-name">Indie Playbook</span>
-            </a>
-        </div>
-    </header>
-
-    <main class="notfound-container">
-        <div class="notfound-card">
-            <div class="notfound-code">404</div>
-            <h1 style="font-size: 1.75rem; margin-bottom: 0.75rem;">Page Not Found</h1>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">The page you are looking for does not exist or may have been moved.</p>
-            <a href="index.html" class="notfound-btn">Return to Home</a>
-        </div>
-    </main>
-
-    <script src="config.js"></script>
-    <script src="updateContent.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="message">
+      <h2>404</h2>
+      <h1>Page Not Found</h1>
+      <p>The specified file was not found on this website. Please check the URL for mistakes and try again.</p>
+    </div>
+  </body>
 </html>

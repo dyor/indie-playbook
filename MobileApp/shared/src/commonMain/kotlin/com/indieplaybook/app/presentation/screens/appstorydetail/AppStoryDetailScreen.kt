@@ -42,6 +42,7 @@ import com.indieplaybook.app.designsystem.generated.resources.UiRes
 import com.indieplaybook.app.designsystem.generated.resources.ic_back
 import com.indieplaybook.app.designsystem.theme.AppTheme
 import com.indieplaybook.app.domain.model.AppStory
+import com.indieplaybook.app.presentation.components.ads.rememberInterstitialAdDisplayer
 import com.indieplaybook.app.presentation.screens.homefeed.StorePresenceBadge
 import com.indieplaybook.app.presentation.screens.homefeed.StoryAvailableBadge
 import com.indieplaybook.app.presentation.screens.homefeed.TechStackBadge
@@ -57,12 +58,18 @@ fun AppStoryDetailScreen(
     onNavigateToAdminEdit: (storyId: String) -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val interstitialAdDisplayer = rememberInterstitialAdDisplayer()
+
+    val handleNavigateBack = {
+        interstitialAdDisplayer?.show()
+        onNavigateBack()
+    }
 
     AppStoryDetailScreen(
         modifier = modifier.fillMaxSize(),
         uiState = uiState,
         onUiEvent = viewModel::onUiEvent,
-        onNavigateBack = onNavigateBack,
+        onNavigateBack = handleNavigateBack,
         onNavigateToSuggestEdits = onNavigateToSuggestEdits,
         onNavigateToAdminEdit = onNavigateToAdminEdit,
     )
@@ -493,21 +500,25 @@ private fun AppStoryDetailStoreScreenshot_en() {
         AppStoryDetailScreen(
             uiState = AppStoryDetailUiState(
                 story = AppStory(
-                    id = "1",
-                    name = "Flighty",
-                    oneLiner = "Live flight tracking app built with Swift and Kotlin Multiplatform",
-                    category = "Travel",
-                    techStack = "KMP",
-                    iconUrl = "",
+                    id = "338283707820",
+                    name = "BetterSpeak: AI Language Tutor",
+                    oneLiner = "Your AI Tutor for Language Speaking & Conversation Practice",
+                    category = "Education",
+                    techStack = "React Native",
+                    iconUrl = "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e6/af/e1/e6afe152-31e8-6643-2a3f-23be760eaae1/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
                     isBookmarked = true,
-                    downloads = "5M+",
-                    revenue = "$10M+ ARR",
-                    originStory = "Started by passionate travelers wanting beautiful live tracking.",
-                    growthPlaybook = "Mastered Live Activities and App Store editorial featuring.",
-                    appStoreRating = 4.8,
-                    appStoreReviews = 142000,
-                    publisher = "Flighty App Corp",
-                    releaseDate = "2019-10-01",
+                    downloads = "1M+",
+                    revenue = "$5M+ ARR",
+                    originStory = "Created by HUBX after observing that traditional language apps focus almost exclusively on vocabulary drills rather than spoken conversation confidence. Built with React Native to rapidly deploy AI voice tutors across iOS and Android.",
+                    growthPlaybook = "Grew through paid social acquisition and micro-influencer demonstrations showcasing real-time AI speech correction on TikTok and Instagram Reels.",
+                    appStoreRating = 4.6,
+                    appStoreReviews = 8224,
+                    publisher = "HUBX",
+                    releaseDate = "2025-08-08",
+                    storePresence = "Dual Store",
+                    appWebsiteUrl = "https://betterspeak.com",
+                    appStoreUrl = "https://apps.apple.com/us/app/betterspeak-ai-language-tutor/id6740192624",
+                    googlePlayUrl = "https://play.google.com/store/apps/details?id=hubx.speak.now",
                 ),
                 isAdmin = false,
             ),

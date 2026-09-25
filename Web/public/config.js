@@ -1,122 +1,71 @@
 // config.js
-// Centralized configuration for the marketing landing page and legal documents.
 const CONFIG = {
-    // App & Developer Branding
-    APP_NAME: "Indie Playbook",
-    DEVELOPER_OR_COMPANY_NAME: "Indie Playbook",
-    WEBSITE_TITLE: "Indie Playbook — Build, Launch & Grow Your Mobile Apps",
-    WEBSITE_DESCRIPTION: "Indie Playbook is the ultimate companion for indie makers and developers to turn app ideas into successful, revenue-generating mobile apps.",
-    CONTACT_EMAIL: "support@example.com",
-    
-    // Store Links (leave empty string "" if not yet published to hide badge)
-    PLAYSTORE_URL: "https://play.google.com/store/apps",
-    APPSTORE_URL: "https://apps.apple.com/app",
-
-    // Legal Dates (YYYY-MM-DD)
-    PRIVACY_POLICY_LAST_UPDATE_DATE: "2026-07-30",
-    TERMS_AND_SERVICE_LAST_UPDATE_DATE: "2026-07-30",
-
-    // Navigation & Social
-    NAV_LINKS: [
-        { label: "Features", href: "#features" },
-        { label: "How It Works", href: "#how-it-works" },
-        { label: "FAQ", href: "#faq" },
-        { label: "Privacy Policy", href: "privacy-policy.html" },
-        { label: "Terms", href: "terms-conditions.html" }
-    ]
+    APP_NAME: "Habit Hero",
+    DEVELOPER_OR_COMPANY_NAME: "Habit Hero Team",
+    WEBSITE_TITLE: "Habit Hero — Turn Daily Habits into Superhero Comic Covers",
+    WEBSITE_DESCRIPTION: "Track daily habits, celebrate streaks with a victory selfie, and get personalized vintage superhero comic book covers powered by AI to share with friends.",
+    CONTACT_EMAIL: "matt@dyor.com",
+    PRIVACY_POLICY_LAST_UPDATE_DATE: "2026-08-13",
+    TERMS_AND_SERVICE_LAST_UPDATE_DATE: "2026-08-13",
+    PLAYSTORE_URL: "https://play.google.com/store/apps/details?id=com.dyor.habithero",
+    APPSTORE_URL: "https://apps.apple.com/app/habithero/id1234567890",
 };
 
 const TEXT_CONTENT = {
-    // Top Bar / Tagline Badge
-    HERO_BADGE: "🚀 Built for Indie Developers & Creators",
+    // Badge & Hero Section
+    HERO_BADGE: "⚡ THE HABIT TRACKER THAT REWARDS CONSISTENCY",
+    HERO_TITLE: "Turn Daily Habits Into Superhero Comic Covers",
+    HERO_SUBTITLE: "Build lasting discipline with a habit tracker that rewards your milestones with custom AI-generated vintage comic book covers starring YOU. Complete quests, snap a victory selfie, and share your hero covers with friends.",
 
-    // Hero Section
-    HERO_TITLE: "Turn Ideas into Shipped Mobile Apps Faster",
-    HERO_SUBTITLE: "From concept and validated feature planning to multiplatform launch and growth. The complete playbook to build, launch, and monetize your apps.",
-
-    // Features Section
-    FEATURES_SECTION_TAG: "POWERFUL FEATURES",
-    FEATURES_SECTION_TITLE: "Everything you need to launch with confidence",
-    FEATURES_SECTION_SUBTITLE: "Designed from the ground up to eliminate guesswork and speed up your development workflow.",
+    // How It Works Section
+    HOW_IT_WORKS_TITLE: "How The Magic Works",
+    HOW_IT_WORKS_SUBTITLE: "From daily discipline to comic book legend in 3 simple steps.",
     
-    FEATURE_CARDS: [
-        {
-            icon: "💡",
-            title: "Idea & Flow Validation",
-            text: "Brainstorm high-impact app concepts, structure intuitive user flows, and validate core features before writing code."
-        },
-        {
-            icon: "⚡",
-            title: "Rapid Multiplatform Development",
-            text: "Leverage cross-platform power across Android, iOS, Desktop, and Web with shared business logic and native performance."
-        },
-        {
-            icon: "💳",
-            title: "Turnkey Monetization",
-            text: "Seamlessly integrate in-app purchases, subscriptions, and flexible credit models built for maximum lifetime value."
-        },
-        {
-            icon: "🔒",
-            title: "Privacy & Compliance First",
-            text: "Stay fully compliant with Apple App Store and Google Play privacy policies, data deletion rules, and safety guidelines."
-        },
-        {
-            icon: "📊",
-            title: "Built-in Analytics & Growth",
-            text: "Track engagement, diagnose crashes in real time, and deploy updates with robust crash reporting and remote config."
-        },
-        {
-            icon: "🎨",
-            title: "Modern Native Design System",
-            text: "Craft polished, accessible user experiences using pre-tested components, dark mode, and fluid typography."
-        }
-    ],
+    STEP1_TITLE: "1. Complete Daily Quests",
+    STEP1_DESC: "Log habits with lightning-fast offline tracking. Build streaks for reading, fitness, hydration, meditation, and more.",
+    
+    STEP2_TITLE: "2. Snap a Daily Selfie",
+    STEP2_DESC: "When you finish your habit, snap a selfie to create a journal of your transformation to a sleeker, smarter, happier you.",
+    
+    STEP3_TITLE: "3. Share Your Streaks",
+    STEP3_DESC: "When you hit your 7 day streak, mint a vintage comic book celebrating your achievement that you can share on text, Instagram, WhatsApp, or print it on flyers that you can hand out in your neighborhood.",
 
-    // How It Works / Value Props
-    WORKFLOW_SECTION_TAG: "SEAMLESS WORKFLOW",
-    WORKFLOW_SECTION_TITLE: "How Indie Playbook works",
-    WORKFLOW_STEPS: [
-        {
-            step: "01",
-            title: "Plan & Structure",
-            text: "Define your product requirements, target audience, and feature roadmap with structured playbooks."
-        },
-        {
-            step: "02",
-            title: "Build & Iterate",
-            text: "Develop features quickly with clean architecture, offline-ready local storage, and real-time testing."
-        },
-        {
-            step: "03",
-            title: "Publish & Scale",
-            text: "Deploy to Google Play and the Apple App Store with full store compliance, automated builds, and marketing landing pages."
-        }
-    ],
+    // Feature Section
+    FEATURE_SECTION_TITLE: "Why Heroes Choose Habit Hero",
+    FEATURE_SECTION_SUBTITLE: "Everything you need to turn boring daily routines into an addictive superhero saga.",
+    
+    FEATURE_CARD_TITLE1: "🎭 Face & Expression Likeness",
+    FEATURE_CARD_TEXT1: "Our advanced AI preserves your distinct facial features, glasses, smile, and grit so you truly star on every cover.",
+    
+    FEATURE_CARD_TITLE2: "🌌 Custom Action Scenarios",
+    FEATURE_CARD_TEXT2: "Personalize your comic lore — read holographic scrolls in galactic libraries, sprint neon cyberpunk streets, or meditate on mountain peaks.",
+    
+    FEATURE_CARD_TITLE3: "🏆 Hall of Heroes Gallery",
+    FEATURE_CARD_TEXT3: "Browse your complete visual collection of milestone covers. Swipe through full-screen, high-res comic art celebrating your consistency.",
+    
+    FEATURE_CARD_TITLE4: "📤 One-Tap Social Sharing",
+    FEATURE_CARD_TEXT4: "Export story-ready comic covers with streak counters directly to Instagram Stories, WhatsApp groups, iMessage, and TikTok.",
 
-    // FAQ Section
-    FAQ_SECTION_TAG: "FREQUENTLY ASKED QUESTIONS",
-    FAQ_SECTION_TITLE: "Got questions? We've got answers",
-    FAQS: [
-        {
-            q: "Which platforms are supported?",
-            a: "Indie Playbook is built for Android and iOS devices, with desktop and web companions supported out of the box."
-        },
-        {
-            q: "How does Indie Playbook protect user privacy?",
-            a: "We prioritize privacy: all personal data is transmitted securely over HTTPS/TLS, minimal telemetry is collected for crash diagnostics, and users can request account and data deletion at any time directly in the app."
-        },
-        {
-            q: "How do I request account and data deletion?",
-            a: "You can delete your account and associated data directly within the app under Profile/Settings > Delete Account, or by contacting our support team at our contact email."
-        },
-        {
-            q: "Can I use the app for free?",
-            a: "Yes! Core features are accessible for free. Optional premium upgrades and subscriptions unlock advanced tools and unlimited access."
-        }
-    ],
+    FEATURE_CARD_TITLE5: "⚡ Offline-First & Fast",
+    FEATURE_CARD_TEXT5: "Powered by local Room database storage for instant, zero-latency daily check-ins without annoying loading spinners.",
 
-    // CTA Banner Section
-    CTA_SECTION_TAG: "GET STARTED TODAY",
-    CTA_SECTION_TITLE: "Ready to ship your next app?",
-    CTA_SECTION_TEXT: "Join developers building sustainable, revenue-generating mobile apps. Download Indie Playbook today."
+    FEATURE_CARD_TITLE6: "🔒 Private & Secure AI",
+    FEATURE_CARD_TEXT6: "Your photos and data are secured through dedicated cloud proxy endpoints without selling your information.",
+
+    // Problem vs Solution Section
+    PROBLEM_SECTION_TITLE: "Why Traditional Habit Trackers Fail",
+    PROBLEM_SECTION_TEXT: "Spreadsheets and boring checkmarks don't give you the emotional dopamine hit to stay consistent when life gets chaotic.",
+    
+    PROBLEM_CARD_TITLE1: "❌ Boring Checklists",
+    PROBLEM_CARD_TEXT1: "Most apps feel like extra work chores with cold, lifeless tick boxes.",
+    
+    PROBLEM_CARD_TITLE2: "❌ Forgotten Milestones",
+    PROBLEM_CARD_TEXT2: "A '15-day streak' badge in standard apps is just a number you forget in 5 minutes.",
+    
+    PROBLEM_CARD_TITLE3: "❌ Zero Shareability",
+    PROBLEM_CARD_TEXT3: "Nobody shares a spreadsheet — but everyone loves sharing custom comic art!",
+
+    // CTA Section
+    CTA_SECTION_TITLE: "Become the Hero of Your Daily Routine",
+    CTA_SECTION_TEXT: "Join thousands of daily heroes minting custom comic covers. Download Habit Hero and start your superhero journey today."
 };

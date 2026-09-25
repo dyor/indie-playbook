@@ -129,7 +129,7 @@ fun MethodologyScreen(
                 title = "Active Independent Apps in English",
                 badgeText = "327 apps",
                 badgeColor = Color(0xFF48CAE4),
-                subtitle = "out of 368 total · 41 apps or 11.1% have been removed · 119 apps or 32.3% are dual store\n\n" +
+                subtitle = "out of 368 total · 41 apps or 11.1% have been removed · 119 apps or 36.4% are dual store\n\n" +
                     "Definition: Excludes government apps and corporate legacy brands. Focused purely on independent creators and bootstrapped software studios.",
                 indent = 2,
             )
@@ -137,9 +137,9 @@ fun MethodologyScreen(
             MethodologyMetricCard(
                 icon = "🌐",
                 title = "Cross-Platform Apps (React Native, Flutter, KMP)",
-                badgeText = "71 apps",
+                badgeText = "69 apps",
                 badgeColor = Color(0xFF7209B7),
-                subtitle = "19.3% of independent · 39 or 54.9% dual store · 32 or 45.1% app store only",
+                subtitle = "21.1% of independent · 39 or 56.5% dual store · 30 or 43.5% app store only",
                 indent = 3,
             )
 
@@ -157,9 +157,9 @@ fun MethodologyScreen(
             FrameworkMetricCard(
                 iconRes = UiRes.drawable.ic_tech_flutter,
                 title = "English Independent Flutter",
-                badgeText = "30 apps",
+                badgeText = "28 apps",
                 badgeColor = Color(0xFF47C5FB),
-                statsText = "15 or 50.0% dual store · 15 or 50.0% app store only",
+                statsText = "15 or 53.6% dual store · 13 or 46.4% app store only",
                 indent = 4,
             )
 
@@ -177,9 +177,9 @@ fun MethodologyScreen(
             MethodologyMetricCard(
                 icon = "📱",
                 title = "Native Apps (iOS Native)",
-                badgeText = "297 apps",
+                badgeText = "258 apps",
                 badgeColor = Color(0xFF3A86FF),
-                subtitle = "80.7% of independent · 80 or 26.9% dual store · 217 or 73.1% app store only",
+                subtitle = "78.9% of independent · 80 or 31.0% dual store · 178 or 69.0% app store only",
                 indent = 3,
             )
 

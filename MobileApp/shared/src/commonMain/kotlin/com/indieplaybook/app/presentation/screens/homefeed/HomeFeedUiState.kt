@@ -10,6 +10,8 @@ data class HomeFeedUiState(
     val storyFilterOptions: List<String> = listOf("All Stories", "Origin Story", "Growth Story"),
     val selectedStoryFilter: String = "All Stories",
     val stories: List<AppStory> = emptyList(),
+    val isLoading: Boolean = false,
+    val errorMessage: String? = null,
 )
 
 sealed interface HomeFeedUiEvent {
@@ -18,4 +20,5 @@ sealed interface HomeFeedUiEvent {
     data class OnStoryFilterSelected(val filter: String) : HomeFeedUiEvent
     data class OnStoryClicked(val story: AppStory) : HomeFeedUiEvent
     data class OnBookmarkClicked(val story: AppStory) : HomeFeedUiEvent
+    data object OnRetryClicked : HomeFeedUiEvent
 }

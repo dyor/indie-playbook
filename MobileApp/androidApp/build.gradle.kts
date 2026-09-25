@@ -26,8 +26,8 @@ android {
             libs.versions.android.compileSdk
                 .get()
                 .toInt()
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 8
+        versionName = "1.0.7"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -79,6 +79,7 @@ android {
                 "admobAppId",
                 getRequiredProperty(
                     "ADMOB_APP_ID_ANDROID",
+                    // Google's Official Sample AdMob App ID for testing and fallback
                     "ca-app-pub-3940256099942544~3347511713",
                 ),
             )
@@ -119,8 +120,8 @@ fun getRequiredProperty(
     defaultValue: String? = null,
     errorMessage: String = "Make sure you added `$key` in local.properties",
 ): String {
-    val propertyValue: String? = gradleLocalProperties(rootDir, providers).getProperty(key)
-    if (propertyValue.isNullOrEmpty() && defaultValue == null) {
+    val propertyValue: String? = gradleLocalProperties(rootDir, providers).getProperty(key)?.takeIf { it.isNotBlank() }
+    if (propertyValue == null && defaultValue == null) {
         throw IllegalArgumentException(errorMessage)
     }
     return propertyValue ?: defaultValue ?: ""

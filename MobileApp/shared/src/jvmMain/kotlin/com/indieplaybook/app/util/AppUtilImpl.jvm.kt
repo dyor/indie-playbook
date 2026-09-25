@@ -50,9 +50,7 @@ class AppUtilImpl : AppUtil {
         return System.getProperty("app.version") ?: "1.0.0" // Update version
     }
 
-    private fun getWebsiteOrStoreLink(): String {
-        return "https://kotlinfoundation.org" // TODO Update url
-    }
+    private fun getWebsiteOrStoreLink(): String = "https://github.com/KotlinFoundation/kmp-contest-starter-kit-documentation"
 
     private fun encode(text: String): String = URLEncoder.encode(text, Charsets.UTF_8)
 }

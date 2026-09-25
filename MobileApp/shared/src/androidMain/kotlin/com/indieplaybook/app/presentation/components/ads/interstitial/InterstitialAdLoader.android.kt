@@ -10,27 +10,43 @@ import com.indieplaybook.app.presentation.components.ads.FullScreenAdLoader
 import com.indieplaybook.app.util.logging.AppLogger
 
 class InterstitialAdLoader(private val context: Context) : FullScreenAdLoader {
+    private var isLoading = false
+
     var interstitialAd: InterstitialAd? = null
+        set(value) {
+            field = value
+            if (value == null) {
+                isLoading = false
+            }
+        }
 
     override fun load() {
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(
-            context,
-            AdsConfig.getInterstitialAdId(),
-            adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdLoaded(p0: InterstitialAd) {
-                    super.onAdLoaded(p0)
-                    AppLogger.d("Interstitial ad is loaded")
-                    interstitialAd = p0
-                }
+        android.os.Handler(android.os.Looper.getMainLooper()).post {
+            if (isLoading || interstitialAd != null) {
+                return@post
+            }
+            isLoading = true
+            val adRequest = AdRequest.Builder().build()
+            InterstitialAd.load(
+                context,
+                AdsConfig.getInterstitialAdId(),
+                adRequest,
+                object : InterstitialAdLoadCallback() {
+                    override fun onAdLoaded(p0: InterstitialAd) {
+                        super.onAdLoaded(p0)
+                        AppLogger.d("Interstitial ad is loaded")
+                        interstitialAd = p0
+                        isLoading = false
+                    }
 
-                override fun onAdFailedToLoad(p0: LoadAdError) {
-                    super.onAdFailedToLoad(p0)
-                    AppLogger.e("Error loading interstitial ad: ${p0.message}")
-                    interstitialAd = null
-                }
-            },
-        )
+                    override fun onAdFailedToLoad(p0: LoadAdError) {
+                        super.onAdFailedToLoad(p0)
+                        AppLogger.e("Error loading interstitial ad: ${p0.message}")
+                        interstitialAd = null
+                        isLoading = false
+                    }
+                },
+            )
+        }
     }
 }
