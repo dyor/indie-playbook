@@ -102,6 +102,7 @@ no-Firebase AI path, so Firebase / Adapty / store accounts wait until the phase 
 | [setup-appstore-connect](setup-appstore-connect/SKILL.md) | Creating + configuring the App Store Connect listing |
 | [setup-google-play](setup-google-play/SKILL.md) | Creating + configuring the Google Play Console listing |
 | [publish-release](publish-release/SKILL.md) | Building signed artifacts and submitting for review |
+| [push-push](push-push/SKILL.md) | Rapid two-step release: internal track test on phone → production |
 
 **Phase 4 — Monetization**
 

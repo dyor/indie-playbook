@@ -99,8 +99,8 @@ platform :android do
     upload_screenshots = options[:upload_screenshots] || false
     upload_images = options[:upload_images] || false
 
-    submit_for_review = options[:submit_for_review] || true
-    release_status = track == "internal" ? "draft" : (options[:release_status] || "completed")
+    submit_for_review = options.fetch(:submit_for_review, true)
+    release_status = options[:release_status] || (track == "internal" ? "draft" : "completed")
 
 
     # Build AAB

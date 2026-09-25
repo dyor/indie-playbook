@@ -82,10 +82,11 @@ fun SuggestEditsScreen(
                             color = AppTheme.colors.primary,
                         )
                         Text(
-                            text = if (isNewApp)
+                            text = if (isNewApp) {
                                 "Thank you for contributing to the community! An admin will review the suggested app and feature it in the playbook shortly."
-                            else
-                                "Thank you for contributing. An admin will review your suggested edits shortly.",
+                            } else {
+                                "Thank you for contributing. An admin will review your suggested edits shortly."
+                            },
                             style = AppTheme.typography.bodyLarge,
                             color = AppTheme.colors.text.primary,
                         )
@@ -200,7 +201,13 @@ fun SuggestEditsScreen(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 AppButton(
-                    text = if (uiState.isSubmitting) "Submitting..." else if (isNewApp) "Submit New App" else "Submit Suggestion",
+                    text = if (uiState.isSubmitting) {
+                        "Submitting..."
+                    } else if (isNewApp) {
+                        "Submit New App"
+                    } else {
+                        "Submit Suggestion"
+                    },
                     onClick = { onUiEvent(SuggestEditsUiEvent.OnSubmitClicked) },
                     enabled = !uiState.isSubmitting,
                     modifier = Modifier.fillMaxWidth(),

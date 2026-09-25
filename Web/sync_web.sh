@@ -6,9 +6,12 @@
 # are synchronized. This prevents deployments in one repository from deleting or
 # overwriting the other app's assets on the shared Firebase Hosting domain.
 
-# Paths (absolute for robust multi-repository operations)
-HABIT_HERO_WEB="/Users/mattdyor/StudioProjects/HabitHero/Web/public"
-INDIE_PLAYBOOK_WEB="/Users/mattdyor/StudioProjects/indie-playbook/Web/public"
+# Derive paths relative to this script, allowing environment variable overrides
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+INDIE_PLAYBOOK_WEB="${INDIE_PLAYBOOK_WEB:-"$SCRIPT_DIR/public"}"
+HABIT_HERO_WEB="${HABIT_HERO_WEB:-"$(cd "$REPO_ROOT/../HabitHero/Web/public" 2>/dev/null && pwd || echo "$REPO_ROOT/../HabitHero/Web/public")"}"
 
 echo "⏳ Starting Web Synchronization..."
 
@@ -24,36 +27,41 @@ if [ ! -d "$INDIE_PLAYBOOK_WEB" ]; then
 fi
 
 # ==============================================================================
-# 1. Sync Indie Playbook (Root Legal Pages) -> Habit Hero
+# 1. Sync Indie Playbook (Root Legal Pages & Assets) -> Habit Hero
 # ==============================================================================
-echo "🔹 Syncing Indie Playbook (Root Legal Pages) -> Habit Hero..."
+echo "🔹 Syncing Indie Playbook -> Habit Hero..."
 
-# Copy Indie Playbook root policies
-cp "$INDIE_PLAYBOOK_WEB/privacy-policy.html" "$HABIT_HERO_WEB/privacy-policy.html"
-cp "$INDIE_PLAYBOOK_WEB/terms-conditions.html" "$HABIT_HERO_WEB/terms-conditions.html"
-
-# Copy Indie Playbook unique assets
-cp "$INDIE_PLAYBOOK_WEB/config-indie.js" "$HABIT_HERO_WEB/config-indie.js"
-cp "$INDIE_PLAYBOOK_WEB/updateContent-indie.js" "$HABIT_HERO_WEB/updateContent-indie.js"
+# Copy Indie Playbook root policies and assets if they exist
+[ -f "$INDIE_PLAYBOOK_WEB/privacy-policy.html" ] && cp "$INDIE_PLAYBOOK_WEB/privacy-policy.html" "$HABIT_HERO_WEB/privacy-policy.html"
+[ -f "$INDIE_PLAYBOOK_WEB/terms-conditions.html" ] && cp "$INDIE_PLAYBOOK_WEB/terms-conditions.html" "$HABIT_HERO_WEB/terms-conditions.html"
+[ -f "$INDIE_PLAYBOOK_WEB/playbook.html" ] && cp "$INDIE_PLAYBOOK_WEB/playbook.html" "$HABIT_HERO_WEB/playbook.html"
+[ -f "$INDIE_PLAYBOOK_WEB/indie-apps.html" ] && cp "$INDIE_PLAYBOOK_WEB/indie-apps.html" "$HABIT_HERO_WEB/indie-apps.html"
+[ -f "$INDIE_PLAYBOOK_WEB/styles-indie.css" ] && cp "$INDIE_PLAYBOOK_WEB/styles-indie.css" "$HABIT_HERO_WEB/styles-indie.css"
+[ -f "$INDIE_PLAYBOOK_WEB/config-indie.js" ] && cp "$INDIE_PLAYBOOK_WEB/config-indie.js" "$HABIT_HERO_WEB/config-indie.js"
+[ -f "$INDIE_PLAYBOOK_WEB/updateContent-indie.js" ] && cp "$INDIE_PLAYBOOK_WEB/updateContent-indie.js" "$HABIT_HERO_WEB/updateContent-indie.js"
 
 # ==============================================================================
 # 2. Sync Habit Hero (Landing Page, Subdirectory & Assets) -> Indie Playbook
 # ==============================================================================
-echo "🔹 Syncing Habit Hero (Root Landing Page & Subdirectory) -> Indie Playbook..."
+echo "🔹 Syncing Habit Hero -> Indie Playbook..."
 
 # Copy Habit Hero root landing pages
-cp "$HABIT_HERO_WEB/index.html" "$INDIE_PLAYBOOK_WEB/index.html"
-cp "$HABIT_HERO_WEB/styles.css" "$INDIE_PLAYBOOK_WEB/styles.css"
-cp "$HABIT_HERO_WEB/config.js" "$INDIE_PLAYBOOK_WEB/config.js"
-cp "$HABIT_HERO_WEB/updateContent.js" "$INDIE_PLAYBOOK_WEB/updateContent.js"
-cp "$HABIT_HERO_WEB/404.html" "$INDIE_PLAYBOOK_WEB/404.html"
+[ -f "$HABIT_HERO_WEB/index.html" ] && cp "$HABIT_HERO_WEB/index.html" "$INDIE_PLAYBOOK_WEB/index.html"
+[ -f "$HABIT_HERO_WEB/styles.css" ] && cp "$HABIT_HERO_WEB/styles.css" "$INDIE_PLAYBOOK_WEB/styles.css"
+[ -f "$HABIT_HERO_WEB/config.js" ] && cp "$HABIT_HERO_WEB/config.js" "$INDIE_PLAYBOOK_WEB/config.js"
+[ -f "$HABIT_HERO_WEB/updateContent.js" ] && cp "$HABIT_HERO_WEB/updateContent.js" "$INDIE_PLAYBOOK_WEB/updateContent.js"
+[ -f "$HABIT_HERO_WEB/404.html" ] && cp "$HABIT_HERO_WEB/404.html" "$INDIE_PLAYBOOK_WEB/404.html"
 
 # Sync Habit Hero images
-rsync -av --delete "$HABIT_HERO_WEB/images/" "$INDIE_PLAYBOOK_WEB/images/"
+if [ -d "$HABIT_HERO_WEB/images" ]; then
+    rsync -av --delete "$HABIT_HERO_WEB/images/" "$INDIE_PLAYBOOK_WEB/images/"
+fi
 
 # Sync Habit Hero isolated subfolder (/herohabit/)
-mkdir -p "$INDIE_PLAYBOOK_WEB/herohabit"
-rsync -av --delete "$HABIT_HERO_WEB/herohabit/" "$INDIE_PLAYBOOK_WEB/herohabit/"
+if [ -d "$HABIT_HERO_WEB/herohabit" ]; then
+    mkdir -p "$INDIE_PLAYBOOK_WEB/herohabit"
+    rsync -av --delete "$HABIT_HERO_WEB/herohabit/" "$INDIE_PLAYBOOK_WEB/herohabit/"
+fi
 
 echo "✅ Web Synchronization Complete!"
 echo "👉 Whichever project you deploy from now on will host a perfectly merged set of files!"

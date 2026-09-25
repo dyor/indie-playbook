@@ -42,6 +42,7 @@ import com.indieplaybook.app.designsystem.generated.resources.UiRes
 import com.indieplaybook.app.designsystem.generated.resources.ic_back
 import com.indieplaybook.app.designsystem.theme.AppTheme
 import com.indieplaybook.app.domain.model.AppStory
+import com.indieplaybook.app.presentation.components.ads.rememberInterstitialAdDisplayer
 import com.indieplaybook.app.presentation.screens.homefeed.StorePresenceBadge
 import com.indieplaybook.app.presentation.screens.homefeed.StoryAvailableBadge
 import com.indieplaybook.app.presentation.screens.homefeed.TechStackBadge
@@ -57,12 +58,18 @@ fun AppStoryDetailScreen(
     onNavigateToAdminEdit: (storyId: String) -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val interstitialAdDisplayer = rememberInterstitialAdDisplayer()
+
+    val handleNavigateBack = {
+        interstitialAdDisplayer?.show()
+        onNavigateBack()
+    }
 
     AppStoryDetailScreen(
         modifier = modifier.fillMaxSize(),
         uiState = uiState,
         onUiEvent = viewModel::onUiEvent,
-        onNavigateBack = onNavigateBack,
+        onNavigateBack = handleNavigateBack,
         onNavigateToSuggestEdits = onNavigateToSuggestEdits,
         onNavigateToAdminEdit = onNavigateToAdminEdit,
     )

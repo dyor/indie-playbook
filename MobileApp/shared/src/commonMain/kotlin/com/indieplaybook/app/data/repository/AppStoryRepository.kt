@@ -47,7 +47,7 @@ class AppStoryRepository(
             "suggested_publisher" to (suggestion.suggestedPublisher ?: ""),
             "suggested_revenue" to (suggestion.suggestedRevenue ?: ""),
             "suggested_downloads" to (suggestion.suggestedDownloads ?: ""),
-            "note" to (suggestion.note ?: "")
+            "note" to (suggestion.note ?: ""),
         )
         collection.add(data)
         Result.success(Unit)
@@ -80,7 +80,7 @@ class AppStoryRepository(
                 suggestedPublisher = doc.get<String?>("suggested_publisher"),
                 suggestedRevenue = doc.get<String?>("suggested_revenue"),
                 suggestedDownloads = doc.get<String?>("suggested_downloads"),
-                note = doc.get<String?>("note")
+                note = doc.get<String?>("note"),
             )
         }
         Result.success(list)
@@ -148,7 +148,7 @@ class AppStoryRepository(
             "storePresence" to (story.storePresence ?: "Dual Store"),
             "google_play_url" to (story.googlePlayUrl ?: ""),
             "app_store_url" to (story.appStoreUrl ?: ""),
-            "icon_url" to story.iconUrl
+            "icon_url" to story.iconUrl,
         )
         docRef.set(data, merge = true)
     }
@@ -186,7 +186,7 @@ class AppStoryRepository(
                 appStorePrivacyPolicy = doc.get<String?>("app_store_privacy_policy") ?: doc.get<String?>("appStorePrivacyPolicy"),
                 googlePlayPrivacyPolicy = doc.get<String?>("google_play_privacy_policy") ?: doc.get<String?>("googlePlayPrivacyPolicy"),
                 appWebsiteUrl = doc.get<String?>("app_website_url") ?: doc.get<String?>("appWebsiteUrl"),
-                storePresence = doc.get<String?>("store_presence") ?: doc.get<String?>("storePresence")
+                storePresence = doc.get<String?>("store_presence") ?: doc.get<String?>("storePresence"),
             )
         }
         if (entities.isNotEmpty()) {

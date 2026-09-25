@@ -16,7 +16,7 @@ interface FeatureFlagManager {
     companion object {
         // Add Optional Default Feature Flag Values Here
         val DEFAULT_VALUES: Map<String, Comparable<Nothing>> = mapOf(
-            Keys.IS_ADS_ENABLED to false,
+            Keys.IS_ADS_ENABLED to true,
             Keys.IS_ANALYTICS_ENABLED to true,
             Keys.SHOW_REMOTE_PAYWALL to false, // Set to true to use the provider's built-in remote paywall (Adapty/RevenueCat UI) instead of the custom one.
         )

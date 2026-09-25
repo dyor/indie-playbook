@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="com.android.vending.BILLING" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:name=".AndroidApp"
@@ -41,6 +41,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+
+        <!-- Disable automatic AdMob SDK startup initialization.
+             Initialization is handled manually via AppInitializer only when
+             ads are enabled (FeatureFlagManager IS_ADS_ENABLED = true).
+             This prevents startup crashes on launch when AdMob is not configured. -->
+        <provider
+            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+            android:authorities="${applicationId}.mobileadsinitprovider"
+            tools:node="remove" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

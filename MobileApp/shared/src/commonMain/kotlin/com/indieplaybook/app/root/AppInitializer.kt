@@ -21,7 +21,6 @@ import com.mmk.kmpnotifier.KMPNotifier
 import com.mmk.kmpnotifier.notification.PayloadData
 import com.mmk.kmpnotifier.push.PushListener
 import com.mmk.kmpnotifier.push.firebase.addPushListener
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.KoinApplication
@@ -75,15 +74,16 @@ private fun KoinApplication.initializeAnalytics() {
 }
 
 private fun KoinApplication.initializeAds() {
-    val backgroundScope = CoroutineScope(defaultAsyncDispatcher)
     val adsManager by this.koin.inject<AdsManager>()
     val featureFlagManager by this.koin.inject<FeatureFlagManager>()
+    val applicationScope by this.koin.inject<ApplicationScope>()
     val isAdsEnabled = featureFlagManager.getBoolean(FeatureFlagManager.Keys.IS_ADS_ENABLED)
     if (isAdsEnabled.not()) return
 
-    // Initialize ads
-    backgroundScope.launch {
+    // Initialize ads and preload interstitial on Main dispatcher
+    applicationScope.launch(Dispatchers.Main.immediate) {
         adsManager.initialize()
+        adsManager.interstitialAdLoader.load()
     }
 }
 

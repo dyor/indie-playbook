@@ -3,13 +3,13 @@
 package com.indieplaybook.app.data.repository
 
 import com.indieplaybook.app.auth.api.AuthProviderUser
-import com.indieplaybook.app.root.AppConfiguration
 import com.indieplaybook.app.auth.api.AuthServiceProvider
 import com.indieplaybook.app.data.BackgroundExecutor
 import com.indieplaybook.app.data.source.preferences.UserPreferences
 import com.indieplaybook.app.data.source.preferences.UserPreferences.Keys.KEY_FIRST_TIME_USER
 import com.indieplaybook.app.domain.exceptions.UnAuthorizedException
 import com.indieplaybook.app.domain.model.User
+import com.indieplaybook.app.root.AppConfiguration
 import com.indieplaybook.app.util.ApplicationScope
 import com.indieplaybook.app.util.logging.AppLogger
 import kotlinx.coroutines.flow.MutableStateFlow
