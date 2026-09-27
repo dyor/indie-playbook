@@ -41,6 +41,7 @@ Start exploring the indie mobile ecosystem today with Indie Playbook!
 
 ### Contact & Legal Info
 - **Contact Email:** admin@dyor.com
+- **Website:** https://koko-demo-71050.web.app/indie-playbook/
 - **Privacy Policy URL:** https://koko-demo-71050.web.app/privacy-policy.html
 - **Terms of Service URL:** https://koko-demo-71050.web.app/terms-conditions.html
 

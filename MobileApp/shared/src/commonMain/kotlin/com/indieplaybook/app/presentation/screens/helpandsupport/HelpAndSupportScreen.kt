@@ -24,6 +24,7 @@ import com.indieplaybook.app.generated.resources.help_and_support
 import com.indieplaybook.app.generated.resources.item_about_app
 import com.indieplaybook.app.generated.resources.item_contact_support
 import com.indieplaybook.app.generated.resources.item_methodology
+import com.indieplaybook.app.generated.resources.item_website
 import com.indieplaybook.app.presentation.screens.homefeed.AboutAppDialog
 import com.indieplaybook.app.root.AppConfiguration
 import com.indieplaybook.app.util.AppUtil
@@ -52,6 +53,7 @@ fun HelpAndSupportScreen(
         SettingsItemUiState(textRes = Res.string.item_about_app),
         SettingsItemUiState(textRes = Res.string.item_methodology),
         SettingsItemUiState(textRes = Res.string.item_contact_support),
+        SettingsItemUiState(textRes = Res.string.item_website),
         SettingsItemUiState(textRes = UiRes.string.privacy_policy),
         SettingsItemUiState(textRes = UiRes.string.terms_conditions),
     )
@@ -80,6 +82,10 @@ fun HelpAndSupportScreen(
 
                     Res.string.item_contact_support -> {
                         appUtil.openFeedbackMail()
+                    }
+
+                    Res.string.item_website -> {
+                        localUriHandler.openUri(AppConfiguration.URL_WEBSITE)
                     }
 
                     UiRes.string.privacy_policy -> {

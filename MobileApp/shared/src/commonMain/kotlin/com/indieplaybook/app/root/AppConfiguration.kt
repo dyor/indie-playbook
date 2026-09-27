@@ -21,6 +21,9 @@ object AppConfiguration {
     // TODO(publish): your live terms & conditions URL (`publishing` skill).
     const val URL_TERMS_CONDITIONS = "https://koko-demo-71050.web.app/terms-conditions.html"
 
+    // Marketing landing page, linked from Help & Support.
+    const val URL_WEBSITE = "https://koko-demo-71050.web.app/indie-playbook/"
+
     // TODO(publish): your real support email — ships as boilerplate (`publishing` skill).
     const val CONTACT_EMAIL = "admin@dyor.com"
 
